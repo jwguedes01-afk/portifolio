@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Júlio Guedes — Logística · Dados · Desenvolvimento</title>
+    <meta
+      name="description"
+      content="Júlio de Oliveira Guedes do Nascimento — profissional na interseção de Logística, Dados e Desenvolvimento. Entendo o problema operacional, analiso o dado por trás dele e construo a ferramenta que resolve."
+    />
+    <meta name="theme-color" content="#060f1a" />
+    <meta name="author" content="Júlio de Oliveira Guedes do Nascimento" />
+
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Júlio Guedes — Logística · Dados · Desenvolvimento" />
+    <meta
+      property="og:description"
+      content="Três áreas, uma mesma forma de resolver problemas: operação logística, análise de dados e desenvolvimento de software."
+    />
+    <meta property="og:locale" content="pt_BR" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <script>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (stored === "dark" || (!stored && prefersDark)) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
