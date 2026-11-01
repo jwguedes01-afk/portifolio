@@ -62,9 +62,10 @@ export const projects: Project[] = [
     stack: ["React 19", "FastAPI", "Supabase/PostgreSQL", "Recharts"],
     status: "Projeto próprio, em produção",
     screenshots: [
-      { alt: "Dashboard geral do GestFrota", src: null },
-      { alt: "Tela de manutenção de veículos", src: null },
-      { alt: "Relatório de custos de combustível", src: null },
+      { alt: "Dashboard de custos da frota com valor total, evolução mensal e distribuição por departamento", caption: "Dashboard de custos", src: asset("/projects/gestfrota-dashboard.png") },
+      { alt: "Painel com top 10 fornecedores, top 5 veículos por custo e tipos de serviço", caption: "Fornecedores, veículos e serviços", src: asset("/projects/gestfrota-custos.png") },
+      { alt: "Formulário de cadastro de nota de manutenção com importação de XML e leitura da chave da NF-e", caption: "Cadastro de nota de manutenção", src: asset("/projects/gestfrota-cadastro-nota.png") },
+      { alt: "Tela de login do GestFrota", caption: "Login", src: asset("/projects/gestfrota-login.png") },
     ],
     demoUrl: undefined,
     repoUrl: undefined,
