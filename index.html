@@ -351,8 +351,10 @@ main{position:relative;z-index:2;display:block}
 .cert span{font:400 10.5px/1.5 var(--mono)}
 .cert:hover{background:var(--signal);border-color:var(--ink)}
 .cert:hover img{filter:none;transform:rotate(-3deg) scale(1.08)}
-.systems .tags{gap:8px}
-.systems .tag{font-size:11px;padding:.75em 1.05em}
+.systems .tags{gap:10px;margin-top:1.1em}
+.systems .tag{padding:.85em 1.25em;border-color:var(--ink);background:var(--ink);color:var(--paper);font:500 13px/1 var(--mono);letter-spacing:.02em}
+.systems .tag:hover{background:var(--signal);color:var(--ink)}
+.systems .tl-org{margin:.6em 0 0}
 @media (min-width:981px) and (min-height:760px){.col-edu{position:sticky;top:84px}}
 
 /* ---------- contato: o ponto cresce até inundar a tela ---------- */
@@ -765,7 +767,9 @@ html:not(.anim) .back-ring{display:none}
           </button>
         </div>
         <div class="edu systems" data-reveal>
-          <span class="tl-period">Sistemas que já operei</span>
+          <span class="tl-period">Experiência prática</span>
+          <h4 class="tl-title">Sistemas que já operei</h4>
+          <p class="tl-org">ERPs, WMS e gestão de frota no dia a dia da operação</p>
           <ul class="tags"><li class="tag">SAP</li><li class="tag">TOTVS</li><li class="tag">Sankhya</li><li class="tag">ERP-Flex</li><li class="tag">Procfit</li><li class="tag">WMS</li><li class="tag">Frotix</li><li class="tag">Cobli</li><li class="tag">TicketLog</li><li class="tag">Veic</li></ul>
         </div>
       </div>
