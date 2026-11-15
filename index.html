@@ -560,7 +560,7 @@ html:not(.anim) .back-ring{display:none}
     <div class="hero-ui" id="heroUi">
       <p class="hero-status"><i></i>Aberto a novas oportunidades</p>
       <p class="hero-hint">O caminhão é escrito com a minha stack. Passe o mouse para ver o sistema por trás do código.</p>
-      <p class="hero-role"><em>Analista de logística</em> <span class="role-word" id="roleWord" data-words="Desenvolvedor Full Stack,Dados e Power BI,IA aplicada · LLM · MCP,Python · FastAPI · Django,Roteirização e Frota">Desenvolvedor Full Stack</span></p>
+      <p class="hero-role"><em id="roleMain">Analista de logística</em> <span class="role-word" id="roleWord" data-words="Desenvolvedor Full Stack,Dados e Power BI,IA aplicada · LLM · MCP,Python · FastAPI · Django,Roteirização e Frota">Desenvolvedor Full Stack</span></p>
       <div class="hero-cta">
         <a href="#sobre" class="btn btn--signal" data-magnetic><span>Saiba mais</span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7"/></svg></a>
         <a href="#projetos" class="btn" data-magnetic><span>Ver projetos</span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a>
@@ -613,6 +613,7 @@ html:not(.anim) .back-ring{display:none}
               <div><dt>Telefone</dt><dd>(85) 98198-1846</dd></div>
               <div><dt>E-mail</dt><dd>jwguedes01@gmail.com</dd></div>
               <div><dt>Na logística desde</dt><dd>2016</dd></div>
+              <div><dt>Desenvolvedor desde</dt><dd>2023</dd></div>
               <div><dt>Hoje</dt><dd>Gosto Mineiro · Analista de Logística</dd></div>
             </dl>
             <span class="badge-code" aria-hidden="true"></span>
@@ -1078,7 +1079,8 @@ scene((dt,now)=>{
   const a=clamp(1-p*2.4); heroUi.style.opacity=a.toFixed(3); heroUi.style.transform=`translate3d(0,${(-p*46).toFixed(2)}px,0)`; heroUi.style.visibility=a<.02?'hidden':'';
 });
 const roleWord=$('#roleWord'), roles=roleWord.dataset.words.split(','); let ri=0;
-const startRoles=()=>setInterval(()=>{if(S.y>S.vh||document.hidden)return;ri=(ri+1)%roles.length;scramble(roleWord,roles[ri]);},2600);
+const roleMain=$('#roleMain'), mains=['Analista de logística','Desenvolvedor']; let mi=0, tk=0;
+const startRoles=()=>setInterval(()=>{if(S.y>S.vh||document.hidden)return;ri=(ri+1)%roles.length;scramble(roleWord,roles[ri]);if(++tk%2===0){mi=(mi+1)%mains.length;scramble(roleMain,mains[mi]);}},2600);
 
 /* ---------- fitas: velocidade e sentido seguem a rolagem ---------- */
 const tapesBox=$('.tapes'), tapes=$$('.tape').map(el=>({el,track:$('.tape-track',el),set:$('.tape-set',el),dir:+el.dataset.dir,x:0,w:1}));
