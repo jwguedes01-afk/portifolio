@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Originais com dados sensíveis (usar só as versões tratadas em public/)
+imagens/imagem.jpeg

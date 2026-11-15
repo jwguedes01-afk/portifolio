@@ -1,7 +1,11 @@
 {
   "name": "portifolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Portfólio de Júlio Guedes: logística, dados e desenvolvimento",
+  "author": "Júlio Guedes",
+  "repository": "github:jwguedes01-afk/portifolio",
+  "homepage": "https://julio-portifolio.pages.dev/",
   "type": "module",
   "scripts": {
     "dev": "vite",
