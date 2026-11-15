@@ -296,7 +296,8 @@ main{position:relative;z-index:2;display:block}
 .pinned .gallery-ghost{position:absolute;top:50%;left:0;display:flex;gap:.16em;font:900 min(70svh,44vw)/.8 var(--display);font-stretch:62%;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;transform:translate3d(0,-50%,0);will-change:transform;pointer-events:none}
 .pinned .gallery-track{flex-direction:row;align-items:stretch;width:max-content;height:100%;gap:clamp(70px,8vw,170px);padding:0 14vw 0 var(--gutter);will-change:transform}
 .pinned .gallery-intro{flex:none;align-self:center;width:clamp(440px,58vw,1080px)}
-.pinned .gallery-intro .display{font-size:min(31svh,17vw)}
+.pinned .gallery-intro .display{font-size:min(31svh,17vw,calc(clamp(440px,58vw,1080px)/3.95))}
+.pinned .gallery-intro .display .line{white-space:nowrap}
 .pinned .gallery-sub{font-size:clamp(17px,1.5vw,24px)}
 .pinned .gallery-hint{display:inline-flex;align-items:center;gap:12px;margin-top:2.4em;font:400 11px/1 var(--mono);text-transform:uppercase;color:var(--signal)}
 .pinned .gallery-hint .arrow{animation:nudge 1.8s var(--ease-io) infinite}
