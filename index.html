@@ -1,45 +1,1550 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Júlio Guedes · Logística, Dados e Desenvolvimento</title>
+<meta name="description" content="Portfólio de Júlio Guedes: analista de logística e desenvolvedor full stack. Sistemas de frota, rastreio de cargas, manutenção industrial e dashboards de Power BI.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@1&family=Martian+Mono:wdth,wght@75..112.5,300..600&display=swap" rel="stylesheet">
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion');</script>
+<style>
+/* ==========================================================================
+   Júlio Guedes · Portfólio
+   Preto, papel e um único sinal: amarelo de sinalização (#FFC400).
+   O amarelo nunca é texto sobre papel: em seções claras ele vira marca-texto.
+   ========================================================================== */
+:root{
+  --ink:#0a0a0a; --paper:#f4f2ec; --signal:#FFC400; --signal-rgb:255,196,0;
+  --display:'Archivo','Arial Narrow','Helvetica Neue',sans-serif;
+  --serif:'Instrument Serif','Times New Roman',serif;
+  --mono:'Martian Mono',ui-monospace,Consolas,monospace;
+  --gutter:clamp(18px,2.4vw,40px);
+  --ease:cubic-bezier(.16,1,.3,1); --ease-io:cubic-bezier(.76,0,.24,1);
+  color-scheme:dark;
+}
+[data-theme='ink']{--bg:var(--ink);--fg:#fff;--soft:#a3a098;--line:rgba(255,255,255,.16)}
+[data-theme='paper']{--bg:var(--paper);--fg:var(--ink);--soft:#56544c;--line:rgba(10,10,10,.18)}
+[data-theme='signal']{--bg:var(--signal);--fg:var(--ink);--soft:#3a2f00;--line:rgba(10,10,10,.28)}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--ink);-webkit-text-size-adjust:100%;overflow-anchor:none}
+html.smooth{scroll-behavior:smooth}
+html.menu-open,html.zoom-open{overflow:hidden}
+body{margin:0;color:#fff;background:var(--ink);font:400 clamp(16px,1.15vw,19px)/1.55 var(--display);overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img,svg,canvas{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit;text-decoration:none}
+ul,ol,dl,dd,figure{margin:0;padding:0;list-style:none}
+h1,h2,h3,h4,p{margin:0;font:inherit}
+em{font-style:normal} mark{color:inherit;background:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+::selection{background:var(--signal);color:var(--ink)}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+[data-theme='paper'] :focus-visible,[data-theme='signal'] :focus-visible{outline-color:var(--ink)}
+.top-anchor{position:absolute;top:0;left:0}
+.skip{position:fixed;top:10px;left:10px;z-index:200;padding:12px 18px;background:var(--signal);color:var(--ink);font:500 12px var(--mono);transform:translateY(-300%)}
+.skip:focus{transform:none}
+.arrow{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:square;transition:transform .5s var(--ease)}
+.ico{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
-    <title>Júlio Guedes — Logística · Dados · Desenvolvimento</title>
-    <meta
-      name="description"
-      content="Júlio de Oliveira Guedes do Nascimento — profissional na interseção de Logística, Dados e Desenvolvimento. Entendo o problema operacional, analiso o dado por trás dele e construo a ferramenta que resolve."
-    />
-    <meta name="theme-color" content="#060f1a" />
-    <meta name="author" content="Júlio de Oliveira Guedes do Nascimento" />
+/* ---------- carregamento ---------- */
+.loader{display:none}
+.motion .loader{position:fixed;inset:0;z-index:120;display:flex;flex-direction:column;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + var(--gutter)) var(--gutter) calc(env(safe-area-inset-bottom,0px) + var(--gutter));background:var(--ink);color:#fff;clip-path:inset(0);transition:clip-path 1s var(--ease-io);animation:failsafe .01s 7s forwards}
+.motion .loader.done{clip-path:inset(0 0 100% 0)}
+@keyframes failsafe{to{visibility:hidden}}
+.loader-head{display:flex;justify-content:space-between;font:400 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.04em;color:#a3a098}
+.loader-num{display:block;font:900 clamp(130px,34vw,520px)/.78 var(--display);font-stretch:62%;font-variant-numeric:tabular-nums}
+.loader-bar{display:block;height:2px;margin-top:20px;background:rgba(255,255,255,.12)}
+.loader-bar i{display:block;height:100%;background:var(--signal);transform:scaleX(0);transform-origin:left}
 
-    
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Júlio Guedes — Logística · Dados · Desenvolvimento" />
-    <meta
-      property="og:description"
-      content="Três áreas, uma mesma forma de resolver problemas: operação logística, análise de dados e desenvolvimento de software."
-    />
-    <meta property="og:locale" content="pt_BR" />
+/* ---------- cursor e grão ---------- */
+.cursor{display:none}
+.has-cursor .cursor{display:block;position:fixed;top:0;left:0;z-index:110;pointer-events:none}
+.has-cursor,.has-cursor a,.has-cursor button,.has-cursor .badge,.has-cursor canvas{cursor:none}
+.has-cursor .zoom,.has-cursor .zoom *{cursor:auto}
+.c-dot,.c-ring{position:absolute;top:0;left:0;will-change:transform}
+.c-dot{width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 1.5px var(--ink);transition:opacity .25s}
+.c-ring{width:40px;height:40px;margin:-20px 0 0 -20px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.5);border-radius:50%;transition:width .5s var(--ease),height .5s var(--ease),margin .5s var(--ease),background-color .3s,border-color .3s,opacity .3s}
+.cursor[data-theme='paper'] .c-ring,.cursor[data-theme='signal'] .c-ring{border-color:rgba(10,10,10,.6)}
+.cursor.in-hero .c-ring{opacity:0}
+.cursor.is-link .c-ring{width:64px;height:64px;margin:-32px 0 0 -32px;opacity:1}
+.cursor.is-label .c-ring{width:96px;height:96px;margin:-48px 0 0 -48px;background:var(--signal);border-color:var(--ink);opacity:1}
+.cursor.is-label .c-dot{opacity:0}
+.c-label{font:500 10px/1 var(--mono);text-transform:uppercase;color:var(--ink);opacity:0;transition:opacity .2s;text-align:center}
+.cursor.is-label .c-label{opacity:1}
+.grain{position:fixed;inset:-8%;z-index:105;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.anim .grain{animation:grain .9s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(4%,1%)}100%{transform:translate(0,0)}}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <script>
-      (function () {
-        var stored = localStorage.getItem("theme");
-        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        if (stored === "dark" || (!stored && prefersDark)) {
-          document.documentElement.classList.add("dark");
-        }
-      })();
-    </script>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+/* ---------- navegação ---------- */
+.logo{display:inline-flex;align-items:baseline;gap:2px;font:900 26px/1 var(--display);font-stretch:75%;letter-spacing:-.01em}
+.logo i{width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 1px var(--ink);transition:transform .5s var(--ease)}
+a.logo:hover i{transform:scale(1.8)}
+.nav{position:absolute;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:calc(env(safe-area-inset-top,0px) + 16px) var(--gutter) 16px;color:#fff;transition:transform .7s var(--ease),color .3s,background-color .3s}
+.anim .nav{position:fixed}
+.nav.hide{transform:translateY(-110%)}
+.nav.solid{background:rgba(10,10,10,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+[data-zone='paper'] .nav,[data-zone='signal'] .nav{color:var(--ink)}
+[data-zone='paper'] .nav.solid{background:rgba(244,242,236,.84)}
+[data-zone='signal'] .nav.solid{background:rgba(var(--signal-rgb),.88)}
+.menu-open .nav{color:var(--ink);background:none;-webkit-backdrop-filter:none;backdrop-filter:none;transform:none}
+.nav-links ul{display:flex;gap:clamp(14px,1.7vw,30px)}
+.nav-link{position:relative;display:block;padding:6px 0;font:400 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.03em}
+.nav-link::before{content:'';position:absolute;left:-12px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 1px var(--ink);transform:scale(0);transition:transform .5s var(--ease)}
+.nav-link.on::before{transform:scale(1)}
+.roll{position:relative;display:block;overflow:hidden}
+.roll>span{display:block;transition:transform .55s var(--ease)}
+.roll::after{content:attr(data-text);position:absolute;left:0;top:100%;transition:transform .55s var(--ease)}
+.nav-link:hover .roll>span,.nav-link:hover .roll::after{transform:translateY(-100%)}
+.nav-pct{min-width:4ch;text-align:right;font:400 11px/1 var(--mono);font-variant-numeric:tabular-nums}
+html:not(.anim) .nav-pct{display:none}
+.burger{position:relative;display:none;width:44px;height:44px;margin-right:-10px}
+.burger i{position:absolute;left:10px;right:10px;height:2px;background:currentColor;transition:transform .5s var(--ease),top .5s var(--ease)}
+.burger i:nth-child(1){top:17px}.burger i:nth-child(2){top:25px}
+.burger[aria-expanded='true'] i:nth-child(1){top:21px;transform:rotate(45deg)}
+.burger[aria-expanded='true'] i:nth-child(2){top:21px;transform:rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:55;display:flex;align-items:center;padding:80px var(--gutter) 40px;background:var(--signal);color:var(--ink);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .8s var(--ease-io),visibility 0s .8s}
+.menu.open{clip-path:inset(0);visibility:visible;transition:clip-path .8s var(--ease-io)}
+.menu li{overflow:hidden;padding-top:.1em}
+.menu-link{display:flex;align-items:baseline;gap:14px;font:900 min(9.4vh,15vw)/1 var(--display);font-stretch:62%;text-transform:uppercase;transform:translateY(110%);transition:font-stretch .6s var(--ease),transform .5s var(--ease)}
+.menu.open .menu-link{transform:none;transition:font-stretch .6s var(--ease),transform 1s var(--ease) .22s}
+.menu-link small{font:400 11px/1 var(--mono)}
+.menu-link:hover,.menu-link:focus-visible{font-stretch:100%}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100vh;height:100svh;background:var(--ink);color:#fff}
+.anim .hero{position:sticky;top:0}
+.stage{--strip-h:60px;--name-h:13vw;position:absolute;inset:0;overflow:hidden;isolation:isolate}
+.code-layer{position:absolute;inset:0;width:100%;height:100%;max-width:none;z-index:1;transform-origin:50% 46%}
+.hero-name{position:absolute;z-index:2;left:var(--gutter);right:var(--gutter);bottom:var(--strip-h);display:flex;justify-content:space-between;align-items:flex-end;color:#fff;mix-blend-mode:difference;font:900 15vw/.76 var(--display);font-stretch:62%;text-transform:uppercase;letter-spacing:-.005em;white-space:nowrap;pointer-events:none}
+.name-word{display:block;will-change:transform}
+.hero-ui{position:absolute;inset:0;z-index:4;pointer-events:none}
+.hero-ui a,.hero-ui button{pointer-events:auto}
+.hero-status{position:absolute;left:var(--gutter);top:calc(env(safe-area-inset-top,0px) + 86px);display:inline-flex;align-items:center;gap:10px;font:400 11px/1 var(--mono);text-transform:uppercase;color:#d8d5cc}
+.hero-status i{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+.hero-role{position:absolute;left:var(--gutter);bottom:calc(var(--strip-h) + var(--name-h) + 18px);display:flex;flex-direction:column;gap:.14em;font-size:clamp(26px,3.1vw,54px);line-height:1}
+.hero-role em{font-family:var(--serif);font-style:italic;letter-spacing:-.01em}
+.role-word{min-height:1.3em;font:400 .42em/1.3 var(--mono);color:var(--signal);text-transform:uppercase}
+.hero-cta{position:absolute;right:var(--gutter);bottom:calc(var(--strip-h) + var(--name-h) + 18px);display:flex;gap:10px}
+.hero-strip{position:absolute;left:var(--gutter);right:var(--gutter);bottom:0;height:var(--strip-h);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;font:400 11px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.03em;color:#d8d5cc}
+.strip-meta time{margin-left:.9em;color:var(--signal);font-variant-numeric:tabular-nums}
+.strip-scroll{display:inline-flex;align-items:center;gap:12px;padding:8px 0}
+.strip-scroll i{position:relative;display:block;width:56px;height:1px;overflow:hidden;background:rgba(255,255,255,.25)}
+.strip-scroll i::after{content:'';position:absolute;inset:0;background:var(--signal);transform:translateX(-100%);animation:scan 2.2s var(--ease-io) infinite}
+@keyframes scan{0%{transform:translateX(-100%)}70%,100%{transform:translateX(100%)}}
+.hero-hint{position:absolute;right:var(--gutter);top:calc(env(safe-area-inset-top,0px) + 86px);font:400 10px/1.4 var(--mono);text-transform:uppercase;color:#8d8a82;text-align:right;max-width:24ch}
+.socials{display:flex;gap:4px;justify-self:end}
+.socials a{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;transition:background-color .3s,color .3s,transform .7s var(--ease)}
+.socials a:hover{background:var(--signal);color:var(--ink)}
+.socials--large a{width:52px;height:52px;border:1px solid var(--line)}
+.socials--large a:hover{border-color:var(--ink)}
+.socials--large .ico{width:23px;height:23px}
+.btn{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:50px;padding:0 22px;overflow:hidden;border:1px solid rgba(255,255,255,.5);border-radius:999px;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;color:#fff;transition:color .35s,border-color .35s,transform .7s var(--ease)}
+.btn::before{content:'';position:absolute;z-index:-1;left:var(--x,50%);top:var(--y,50%);width:280%;aspect-ratio:1;border-radius:50%;background:var(--signal);transform:translate(-50%,-50%) scale(0);transition:transform .7s var(--ease)}
+.btn:hover{color:var(--ink);border-color:var(--signal)}
+.btn:hover::before{transform:translate(-50%,-50%) scale(1)}
+.btn:hover .arrow{transform:translate(2px,-2px)}
+.btn--signal{background:var(--signal);color:var(--ink);border-color:var(--signal)}
+.btn--signal::before{background:#fff}
+.btn--signal:hover{border-color:#fff}
+.btn--signal:hover .arrow{transform:translateY(3px)}
+.anim .hero-role,.anim .hero-cta,.anim .hero-strip,.anim .hero-status,.anim .hero-hint{opacity:0;translate:0 16px;transition:opacity 1s var(--ease),translate 1.2s var(--ease)}
+.anim.hero-in .hero-role,.anim.hero-in .hero-cta,.anim.hero-in .hero-strip,.anim.hero-in .hero-status,.anim.hero-in .hero-hint{opacity:1;translate:0 0}
+.anim.hero-in .hero-cta{transition-delay:.12s}.anim.hero-in .hero-strip{transition-delay:.24s}
+@media (max-aspect-ratio:1/1),(max-width:760px){
+  .stage{--strip-h:50px;--stack-cta:50px;--stack-role:62px}
+  .hero-name{flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:.02em;bottom:calc(var(--strip-h) + var(--stack-cta) + var(--stack-role) + 8px);font-size:26vw}
+  .hero-role{flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:.1em .4em;bottom:calc(var(--strip-h) + var(--stack-cta) + 12px);font-size:clamp(24px,6.6vw,40px)}
+  .role-word{min-height:0;font-size:.46em}
+  .hero-cta{left:var(--gutter);right:var(--gutter);bottom:var(--strip-h)}
+  .hero-cta .btn{flex:1;height:48px;padding:0 12px}
+  .hero-strip{grid-template-columns:1fr auto;font-size:10px;white-space:nowrap}
+  .strip-scroll,.hero-hint{display:none}
+}
+
+/* ---------- fitas ---------- */
+main{position:relative;z-index:2;display:block}
+.tapes{position:absolute;top:0;left:0;right:0;height:0;z-index:5;pointer-events:none;overflow-x:clip;overflow-y:visible}
+.tape{position:absolute;top:clamp(50px,6.2vw,104px);left:-6vw;width:112vw;overflow:hidden;padding:.2em 0;font:900 clamp(26px,4.2vw,72px)/1 var(--display);font-stretch:62%;text-transform:uppercase;white-space:nowrap}
+.tape--ink{background:var(--ink);color:#fff;transform:rotate(2.2deg)}
+.tape--signal{background:var(--signal);color:var(--ink);transform:rotate(-1.8deg);box-shadow:0 0 0 1.5px var(--ink)}
+.tape-track{display:flex;width:max-content;will-change:transform}
+.tape-set{display:flex;align-items:center;flex:none}
+.tape-set b{padding:0 .3em;font-weight:inherit}
+.tape-set i{flex:none;width:.3em;height:.3em;margin:0 .2em;border-radius:50%;background:currentColor}
+
+/* ---------- base de seção ---------- */
+.sec{position:relative;padding:clamp(90px,11vw,180px) var(--gutter);background:var(--bg);color:var(--fg)}
+.sec-head{position:relative;z-index:2;margin-bottom:clamp(36px,5.4vw,88px)}
+.sec-tag{margin-bottom:clamp(14px,1.6vw,26px);font:400 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.03em;color:var(--soft)}
+.sec-tag b{margin-right:.5em;font-weight:500;color:var(--fg)}
+.display{font:900 clamp(64px,15vw,280px)/.84 var(--display);font-stretch:62%;text-transform:uppercase;letter-spacing:-.005em}
+.display .line{display:block}
+.display em{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.14em;line-height:.7;letter-spacing:-.03em;text-transform:none}
+[data-theme='ink'] .display em{color:var(--signal)}
+[data-theme='signal'] .display em{color:var(--ink)}
+[data-theme='paper'] .display em{position:relative;z-index:0;display:inline-block;padding:0 .08em 0 .03em}
+[data-theme='paper'] .display em::before{content:'';position:absolute;z-index:-1;left:-.03em;right:-.02em;bottom:-.07em;height:.46em;background:var(--signal);transform:rotate(-1.2deg);transform-origin:0 50%}
+.anim [data-theme='paper'] [data-split] em::before{transform:rotate(-1.2deg) scaleX(0);transition:transform 1.3s var(--ease) .45s}
+.anim [data-theme='paper'] [data-split].in em::before{transform:rotate(-1.2deg) scaleX(1)}
+.display .line+.line{margin-top:.07em}
+.anim [data-split] .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.16em .04em .08em;margin:-.16em -.04em -.08em}
+.anim [data-split] .c{display:inline-block;transform:translateY(125%) rotate(7deg);transform-origin:0 100%;transition:transform 1.1s var(--ease);transition-delay:calc(var(--i)*24ms)}
+.anim [data-split] em .w{padding:.4em .06em .42em;margin:-.4em -.06em -.42em}
+.anim [data-split] em .c{transform:translateY(210%) rotate(7deg)}
+.anim [data-split].in .c{transform:none}
+.anim [data-reveal]{opacity:0;translate:0 34px;transition:opacity 1s var(--ease),translate 1.2s var(--ease)}
+.anim [data-reveal].in{opacity:1;translate:0 0}
+.marker{padding:.04em .14em;margin:0 -.14em;background:linear-gradient(var(--signal),var(--signal)) no-repeat 0 50%/100% 90%;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.anim .marker{background-size:0% 90%;transition:background-size 1.2s var(--ease) .45s}
+.anim .in .marker{background-size:100% 90%}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:.62em .95em;border:1px solid var(--tag-line,var(--line));border-radius:999px;font:400 10.5px/1 var(--mono);transition:background-color .3s,color .3s,border-color .3s}
+@media (hover:hover){.pj .tag:hover{background:var(--signal);color:var(--ink);border-color:var(--signal)}}
+
+/* ---------- sobre ---------- */
+.sobre{overflow:hidden;overflow:clip;padding-top:clamp(170px,19vw,320px)}
+.sobre,.resume{border-radius:clamp(18px,3vw,44px)}
+.manifesto{position:relative;z-index:2;max-width:21em;margin-bottom:clamp(70px,10vw,170px);font:500 clamp(30px,5.2vw,94px)/1.03 var(--display);font-stretch:84%;letter-spacing:-.022em}
+.anim .manifesto .ink{opacity:.13}
+.sobre-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,380px);gap:clamp(40px,9vw,160px);align-items:start}
+.sobre-body{position:relative;z-index:2;display:flex;flex-direction:column;gap:1.1em;max-width:34em;font-size:clamp(17px,1.5vw,23px);line-height:1.5}
+.sobre-title{margin-bottom:.35em;font:800 clamp(34px,4.4vw,76px)/.96 var(--display);font-stretch:66%;text-transform:uppercase}
+.sobre-title em{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.1em;letter-spacing:-.02em;text-transform:none}
+.stats{display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,48px);margin-top:.6em;padding-top:1em;border-top:1px solid var(--line)}
+.stats b{display:block;font:900 clamp(44px,5vw,80px)/.9 var(--display);font-stretch:62%}
+.stats span{font:400 10.5px/1.4 var(--mono);text-transform:uppercase;color:var(--soft)}
+/* crachá */
+.rig-slot{position:relative;z-index:1;display:flex;justify-content:center;perspective:1400px}
+.rig{position:relative;width:min(100%,360px);transform-origin:50% calc(var(--strap-h,170px)*-1);will-change:transform}
+.strap{position:absolute;left:50%;bottom:calc(100% - 6px);width:28px;height:calc(var(--strap-h,170px) + 140px);margin-left:-14px;background:repeating-linear-gradient(0deg,transparent 0 22px,rgba(10,10,10,.13) 22px 23px),var(--signal);box-shadow:inset 1px 0 rgba(10,10,10,.28),inset -1px 0 rgba(10,10,10,.28)}
+.badge{position:relative;display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:20px;background:#0c0c0c;color:#fff;box-shadow:0 36px 70px -24px rgba(10,10,10,.6),inset 0 0 0 1px rgba(255,255,255,.09);transform-style:preserve-3d;touch-action:pan-y;-webkit-user-select:none;user-select:none;will-change:transform;--tag-line:rgba(255,255,255,.2)}
+.badge-clip{position:absolute;top:-14px;left:50%;width:52px;height:30px;margin-left:-26px;border-radius:7px;background:#1c1c1c;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.badge-clip::after{content:'';position:absolute;left:50%;top:18px;width:18px;height:5px;margin-left:-9px;border-radius:3px;background:var(--paper)}
+.badge-top{display:flex;align-items:flex-end;justify-content:space-between;padding-top:12px}
+.badge-role{font:400 9.5px/1.2 var(--mono);text-transform:uppercase;color:#a3a098;text-align:right}
+.badge-photo{position:relative;overflow:hidden;aspect-ratio:1/.8;border-radius:12px;background:radial-gradient(circle at 50% 40%,rgba(var(--signal-rgb),.28),transparent 62%),#151515;display:grid;place-items:center}
+.badge-photo span{font:900 120px/1 var(--display);font-stretch:62%;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.35)}
+.badge-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;pointer-events:none}
+.badge-name{font:900 clamp(40px,3.4vw,50px)/.9 var(--display);font-stretch:62%;text-transform:uppercase;white-space:nowrap}
+.badge-data div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:6px 0;border-top:1px solid rgba(255,255,255,.14)}
+.badge-data dt{flex:none;font:400 9px/1.3 var(--mono);text-transform:uppercase;color:#a3a098}
+.badge-data dd{font-size:13px;line-height:1.3;text-align:right;overflow-wrap:anywhere}
+.badge-code{display:block;height:30px;background:repeating-linear-gradient(90deg,var(--signal) 0 2px,transparent 2px 5px,var(--signal) 5px 6px,transparent 6px 10px,var(--signal) 10px 13px,transparent 13px 15px,var(--signal) 15px 16px,transparent 16px 21px)}
+.badge-sheen{position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--sx,50%) var(--sy,20%),rgba(var(--signal-rgb),.22),transparent 46%);opacity:0;transition:opacity .4s}
+.badge:hover .badge-sheen{opacity:1}
+
+/* ---------- habilidades ---------- */
+.skills{padding-inline:0;padding-bottom:clamp(70px,9vw,150px)}
+.skills .sec-head{padding-inline:var(--gutter)}
+.stack-list{border-bottom:1px solid var(--line)}
+.stack-row{position:relative;isolation:isolate;display:grid;grid-template-columns:clamp(34px,4.4vw,76px) auto minmax(0,1fr);align-items:center;gap:clamp(10px,2vw,32px);padding:clamp(10px,1.1vw,18px) var(--gutter);overflow:hidden;border-top:1px solid var(--line);transition:color .35s;--tag-line:var(--line)}
+.stack-row::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--signal);transform:scaleY(0);transform-origin:50% 100%;transition:transform .6s var(--ease)}
+.stack-num{font:400 11px/1 var(--mono);color:var(--soft);transition:color .35s}
+.stack-title{font:900 clamp(46px,8vw,146px)/.92 var(--display);font-stretch:62%;text-transform:uppercase;white-space:nowrap;transition:font-stretch .8s var(--ease)}
+.stack-row .tags{justify-content:flex-end}
+.stack-row.on{color:var(--ink);--tag-line:rgba(10,10,10,.4)}
+.stack-row.on::before{transform:none}
+.stack-row.on .stack-num{color:var(--ink)}
+.stack-row.on .stack-title{font-stretch:76%}
+@media (hover:hover){
+  .stack-row:hover{color:var(--ink);--tag-line:rgba(10,10,10,.4)}
+  .stack-row:hover::before{transform:none}
+  .stack-row:hover .stack-num{color:var(--ink)}
+  .stack-row:hover .stack-title{font-stretch:76%}
+}
+.anim .stack-row[data-reveal]{opacity:1;translate:0 0}
+.anim .stack-row[data-reveal]>*{opacity:0;translate:0 50%;transition:opacity .9s var(--ease),translate 1.1s var(--ease)}
+.anim .stack-row[data-reveal].in>*{opacity:1;translate:0 0}
+.anim .stack-row[data-reveal].in .stack-title{transition-delay:.06s}
+.anim .stack-row[data-reveal].in .tags{transition-delay:.14s}
+
+/* ---------- projetos ---------- */
+.gallery{position:relative;background:var(--bg);color:var(--fg)}
+.gallery-sticky{position:relative}
+.gallery-ghost,.gallery-rail{display:none}
+.gallery-track{position:relative;display:flex;flex-direction:column;gap:clamp(44px,10vw,76px);padding:clamp(80px,12vw,120px) var(--gutter) clamp(70px,12vw,110px)}
+.gallery-intro .display{font-size:clamp(84px,27vw,200px);line-height:.86}
+.gallery-sub{max-width:26em;margin-top:1.4em;color:#d8d5cc}
+.gallery-hint{display:none}
+.pj{display:flex;flex-direction:column;gap:22px}
+.gallery:not(.pinned) .pj+.pj{padding-top:clamp(44px,10vw,76px);border-top:1px solid var(--line)}
+.pj-info{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.pj-num{font:400 11px/1 var(--mono);color:var(--signal)}
+.pj-badge{font:400 10.5px/1.4 var(--mono);text-transform:uppercase;color:var(--soft)}
+.pj-title{font:900 clamp(58px,15vw,136px)/.86 var(--display);font-stretch:62%;text-transform:uppercase}
+.pj-desc{line-height:1.48;color:#d8d5cc}
+.frame{position:relative;display:block;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#111;transform-origin:50% 100%;will-change:transform;text-align:left;width:100%}
+.frame-bar{display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-bottom:1px solid var(--line);font:400 9.5px/1 var(--mono);color:var(--soft);white-space:nowrap}
+.frame-bar i{flex:none;width:8px;height:8px;border-radius:50%;background:#3a3a36}
+.frame-bar span{margin-left:8px;overflow:hidden;text-overflow:ellipsis}
+.frame-view{display:block;overflow:hidden}
+.frame-view img{width:100%;transform:translate3d(var(--px,0),0,0) scale(1.07);transition:filter .9s var(--ease)}
+.anim .frame-view img{filter:grayscale(1) contrast(1.06)}
+.anim .pj.active .frame-view img,.anim .frame:hover .frame-view img,.anim .frame:focus-visible .frame-view img{filter:none}
+@media (min-width:900px){
+  .gallery:not(.pinned) .pj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:clamp(28px,4vw,72px);align-items:start}
+  .gallery:not(.pinned) .pj-title{font-size:clamp(56px,6.4vw,120px)}
+}
+.anim .frame-view{clip-path:inset(100% 0 0 0);transition:clip-path 1.3s var(--ease-io)}
+.anim .pj.seen .frame-view{clip-path:inset(0)}
+.pinned .gallery-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;overflow:clip}
+.pinned .gallery-ghost{position:absolute;top:50%;left:0;display:flex;gap:.16em;font:900 min(70svh,44vw)/.8 var(--display);font-stretch:62%;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;transform:translate3d(0,-50%,0);will-change:transform;pointer-events:none}
+.pinned .gallery-track{flex-direction:row;align-items:stretch;width:max-content;height:100%;gap:clamp(70px,8vw,170px);padding:0 14vw 0 var(--gutter);will-change:transform}
+.pinned .gallery-intro{flex:none;align-self:center;width:clamp(440px,58vw,1080px)}
+.pinned .gallery-intro .display{font-size:min(31svh,17vw)}
+.pinned .gallery-sub{font-size:clamp(17px,1.5vw,24px)}
+.pinned .gallery-hint{display:inline-flex;align-items:center;gap:12px;margin-top:2.4em;font:400 11px/1 var(--mono);text-transform:uppercase;color:var(--signal)}
+.pinned .gallery-hint .arrow{animation:nudge 1.8s var(--ease-io) infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(10px)}}
+.pinned .pj{--info-w:clamp(300px,29vw,500px);--pj-gap:clamp(32px,3.4vw,64px);position:relative;flex:none;display:grid;grid-template-columns:var(--info-w) auto;align-content:center;align-items:start;column-gap:var(--pj-gap);height:100%;padding:clamp(58px,10svh,110px) 0 clamp(66px,11svh,104px)}
+.pinned .pj:nth-of-type(odd)>*{translate:0 -3.5svh}
+.pinned .pj:nth-of-type(even)>*{translate:0 3.5svh}
+.pinned .pj-info{gap:clamp(7px,1.1svh,14px)}
+.pinned .pj-media{width:auto}
+.pinned .frame-view img{max-width:none;width:min(calc(var(--r,1.8)*min(60svh,720px)),calc(94vw - var(--info-w) - var(--pj-gap)))}
+.pinned .pj-title{width:max-content;white-space:nowrap;font-size:min(calc(var(--info-w)/5.9),13svh)}
+.pinned .pj-desc{font-size:clamp(14px,1.08vw,18px)}
+.anim .pinned .pj-info>:not(.pj-title){transition:opacity .6s var(--ease)}
+.anim .pinned .pj:not(.active) .pj-info>:not(.pj-title){opacity:.28}
+.pinned .gallery-rail{position:absolute;left:var(--gutter);right:var(--gutter);bottom:0;height:clamp(42px,7svh,62px);display:grid;grid-template-columns:auto minmax(0,1fr) minmax(14ch,auto);gap:22px;align-items:center;font:400 11px/1 var(--mono);text-transform:uppercase}
+.rail-count,.rail-name{white-space:nowrap}
+.rail-count b{font-weight:500;color:var(--signal)}
+.rail-name{text-align:right}
+.rail-ticks{display:flex;gap:3px;height:100%;align-items:center}
+.rail-tick{position:relative;flex:1;height:28px}
+.rail-tick::before,.rail-tick::after{content:'';position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;transition:height .3s var(--ease),margin .3s var(--ease)}
+.rail-tick::before{background:rgba(255,255,255,.22)}
+.rail-tick::after{background:var(--signal);transform:scaleX(var(--fill,0));transform-origin:left}
+.rail-tick:hover::before,.rail-tick:hover::after{height:6px;margin-top:-3px}
+
+/* ---------- currículo ---------- */
+.resume-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(44px,7vw,130px);align-items:start}
+.col-title{margin-bottom:clamp(24px,3vw,44px);font:400 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.03em}
+.col-title span{padding:.5em .8em;background:var(--ink);color:#fff}
+.timeline{--fill:0;position:relative;padding-left:clamp(22px,2.6vw,42px)}
+.timeline::before,.timeline::after{content:'';position:absolute;left:0;top:8px;bottom:0}
+.timeline::before{width:1px;background:var(--line)}
+.timeline::after{width:3px;margin-left:-1px;background:var(--ink);transform:scaleY(var(--fill));transform-origin:top}
+.tl{position:relative;padding-bottom:clamp(38px,4.4vw,76px)}
+.tl:last-child{padding-bottom:0}
+.tl::before{content:'';position:absolute;top:3px;z-index:1;left:calc(clamp(22px,2.6vw,42px)*-1 - 7px);width:15px;height:15px;border:2px solid var(--ink);border-radius:50%;background:var(--paper);transition:transform .5s var(--ease)}
+.tl.now::before{background:var(--signal)}
+.tl:hover::before{transform:scale(1.4)}
+.tl-period{display:block;margin-bottom:.9em;font:400 11px/1.4 var(--mono);text-transform:uppercase;color:var(--soft)}
+.tl-title{display:inline;padding:0 .08em;margin-left:-.08em;font:800 clamp(30px,3.5vw,60px)/1.02 var(--display);font-stretch:66%;text-transform:uppercase;background:linear-gradient(var(--signal),var(--signal)) no-repeat 0 60%/0% 76%;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .8s var(--ease)}
+.tl:hover .tl-title,.edu:hover .tl-title{background-size:100% 76%}
+.tl-org{margin:.55em 0 .8em;font-weight:600}
+.tl-step{display:block;margin:1em 0 .4em;font:500 10.5px/1.4 var(--mono);text-transform:uppercase}
+.tl-list,.edu-text{color:var(--soft)}
+.tl-list li{position:relative;padding-left:1.3em;margin-bottom:.3em}
+.tl-list li::before{content:'—';position:absolute;left:0;color:var(--ink)}
+.tl-list b{color:var(--fg);font-weight:600}
+.edu{padding-bottom:clamp(36px,4vw,64px)}
+.edu .tl-title{font-size:clamp(26px,2.5vw,44px)}
+.cert{display:flex;align-items:center;gap:14px;margin-top:1.1em;padding:10px;border:1px solid var(--line);border-radius:12px;transition:background-color .35s,border-color .35s;text-align:left;width:100%}
+.cert img{flex:none;width:96px;height:68px;object-fit:cover;object-position:top;border-radius:6px;filter:grayscale(1);transition:filter .5s,transform .7s var(--ease)}
+.cert span{font:400 10.5px/1.5 var(--mono)}
+.cert:hover{background:var(--signal);border-color:var(--ink)}
+.cert:hover img{filter:none;transform:rotate(-3deg) scale(1.08)}
+.systems .tags{gap:8px}
+.systems .tag{font-size:11px;padding:.75em 1.05em}
+@media (min-width:981px) and (min-height:760px){.col-edu{position:sticky;top:84px}}
+
+/* ---------- contato: o ponto cresce até inundar a tela ---------- */
+.flood{position:relative;background:var(--ink)}
+.anim .flood{height:240vh;height:240svh}
+.flood-anchor{position:absolute;top:0;left:0}
+.anim .flood-anchor{top:auto;bottom:100vh;bottom:100svh}
+.anim .flood-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.flood-layer{background:var(--bg);color:var(--fg)}
+.anim .flood-layer{position:absolute;inset:0;overflow:hidden}
+.anim .flood-over{z-index:2;clip-path:circle(0 at 50% 50%);will-change:clip-path}
+.anim .flood-under{z-index:1}
+.flood-inner{display:flex;flex-direction:column;justify-content:center;min-height:100%;padding:clamp(66px,11svh,110px) var(--gutter) clamp(24px,5svh,56px)}
+.flood .display{line-height:.84;font-size:clamp(64px,min(15vw,22svh),280px)}
+.flood-sub{margin:clamp(10px,2.2svh,26px) 0 clamp(14px,3svh,40px);font-size:clamp(17px,1.6vw,26px);line-height:1.25}
+.contact-rows{border-bottom:1px solid var(--line)}
+.c-row{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(104px,1fr) minmax(0,3fr) auto;align-items:center;gap:12px 18px;padding:clamp(8px,1.5svh,18px) 0;overflow:hidden;border-top:1px solid var(--line);transition:color .35s,padding .6s var(--ease)}
+.c-row::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--ink);transform:scaleY(0);transform-origin:50% 100%;transition:transform .6s var(--ease)}
+.c-kind{display:inline-flex;align-items:center;gap:8px;font:400 11px/1 var(--mono);text-transform:uppercase}
+.c-value{font:800 clamp(20px,min(3.6vw,6svh),62px)/1.05 var(--display);font-stretch:68%;overflow-wrap:anywhere}
+.c-row .arrow{width:clamp(20px,2.4vw,34px);height:clamp(20px,2.4vw,34px)}
+.c-row:hover,.c-row:focus-visible{color:var(--signal);padding-inline:18px}
+.c-row:hover::before,.c-row:focus-visible::before{transform:none}
+.c-row:hover .arrow{transform:rotate(45deg)}
+.flood-under .c-row{transition:none}
+@media (max-height:540px){.anim .flood{height:auto}.anim .flood-anchor{top:0;bottom:auto}.anim .flood-sticky{position:static;height:auto;overflow:visible}.anim .flood-over{position:relative;clip-path:none!important}.anim .flood-under{display:none}}
+
+/* ---------- rodapé ---------- */
+.footer{position:relative;z-index:2;overflow:hidden;padding:clamp(22px,3vw,44px) var(--gutter) 0;background:var(--bg);color:var(--fg)}
+.footer-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;font-size:14px;color:var(--soft)}
+.footer-row strong{font-weight:600;color:var(--fg)}
+.footer-row .logo,.footer-row .socials{color:var(--fg)}
+.footer-giant{margin:clamp(22px,4vw,60px) 0 -.11em;font-size:clamp(64px,17vw,320px)}
+.back-top{position:fixed;right:var(--gutter);bottom:calc(env(safe-area-inset-bottom,0px) + var(--gutter));z-index:50;display:grid;place-items:center;width:86px;height:86px;border-radius:50%;background:var(--signal);color:var(--ink);box-shadow:0 0 0 1.5px var(--ink);opacity:0;visibility:hidden;transform:translateY(16px) scale(.8);transition:opacity .4s,visibility .4s,transform .6s var(--ease),background-color .3s,color .3s}
+.back-top.show,html:not(.anim) .back-top{opacity:1;visibility:visible;transform:none}
+html:not(.anim) .back-top{width:52px;height:52px}
+html:not(.anim) .back-ring{display:none}
+.back-top:hover{background:var(--ink);color:var(--signal)}
+.back-top:hover .arrow{transform:translateY(-3px)}
+[data-zone-end='signal'] .back-top{background:var(--ink);color:var(--signal)}
+.back-ring{position:absolute;inset:0;width:100%;height:100%;max-width:none}
+.back-ring text{font:500 7.4px var(--mono);fill:currentColor}
+
+/* ---------- zoom ---------- */
+.zoom{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;margin:0;padding:clamp(14px,3vw,44px);border:0;background:rgba(10,10,10,.95);color:#fff}
+.zoom[open]{display:grid;place-items:center;animation:zfade .4s var(--ease)}
+.zoom::backdrop{background:transparent}
+.zoom figure{display:grid;justify-items:center;gap:12px}
+.zoom img{width:auto;height:auto;max-width:min(94vw,1700px);max-height:calc(100dvh - 110px);border-radius:8px;animation:zpop .7s var(--ease)}
+.zoom figcaption{font:400 11px/1.4 var(--mono);text-transform:uppercase;color:#d8d5cc;text-align:center;max-width:70ch}
+.zoom-close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:var(--gutter);display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:var(--signal);color:var(--ink);font:500 11px/1 var(--mono);text-transform:uppercase}
+@keyframes zfade{from{opacity:0}}
+@keyframes zpop{from{transform:scale(.94)}}
+
+@media (max-width:1100px){.nav-links,.nav-pct{display:none}.burger{display:block}}
+@media (max-width:980px){
+  .nav-links,.nav-pct{display:none}
+  .burger{display:block}
+  .sobre-grid{grid-template-columns:minmax(0,1fr);gap:clamp(90px,16vw,130px)}
+  .rig-slot{order:-1}
+  .rig{width:min(86vw,340px)}
+  .resume-grid{grid-template-columns:minmax(0,1fr)}
+  .stack-row{grid-template-columns:26px minmax(0,1fr);padding-block:16px}
+  .stack-title{white-space:normal}
+  .stack-row .tags{grid-column:2;justify-content:flex-start}
+  .back-top{width:62px;height:62px;right:14px;bottom:14px}
+  .back-ring{display:none}
+}
+@media (max-width:640px){
+  .c-row{grid-template-columns:minmax(0,1fr) auto}
+  .c-kind{grid-column:1/-1}
+  .c-row .arrow{grid-row:2;grid-column:2}
+  .footer-row{justify-content:center;text-align:center}
+}
+/* ---------- power bi ---------- */
+.powerbi{border-radius:clamp(18px,3vw,44px)}
+.bi-top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,60px);align-items:end;margin-bottom:clamp(28px,4vw,56px)}
+.bi-lead{font-size:clamp(18px,1.6vw,26px);line-height:1.4;max-width:34em}
+.bi-top .tags{justify-content:flex-end}
+.bi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,32px)}
+.bi-card{display:flex;flex-direction:column;gap:14px}
+.bi-shot{position:relative;display:block;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#111;width:100%}
+.bi-shot img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top left;transition:transform .9s var(--ease)}
+.bi-shot:hover img,.bi-shot:focus-visible img{transform:scale(1.04)}
+.bi-num{font:400 11px/1 var(--mono);color:var(--soft)}
+.bi-card h3{font:900 clamp(30px,3vw,52px)/.92 var(--display);font-stretch:62%;text-transform:uppercase}
+.bi-card p{color:var(--soft);max-width:34em}
+.bi-card .tags{--tag-line:var(--line)}
+.bi-note{margin-top:clamp(20px,3vw,40px);font:400 10.5px/1.4 var(--mono);text-transform:uppercase;color:var(--soft)}
+.anim .bi-shot{clip-path:inset(100% 0 0 0);transition:clip-path 1.2s var(--ease-io)}
+.anim .bi-card.in .bi-shot{clip-path:inset(0)}
+@media (max-width:900px){.bi-top,.bi-grid{grid-template-columns:minmax(0,1fr)}.bi-top .tags{justify-content:flex-start}}
+
+/* ---------- na prática: roteirizador e estoque 3D ---------- */
+.lab{--panel:#121212;--acc-fill:var(--signal);--blue:#7FA8FF;border-radius:clamp(18px,3vw,44px) clamp(18px,3vw,44px) 0 0}
+.lab-block+.lab-block{margin-top:clamp(70px,9vw,150px)}
+.lab-intro{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px clamp(14px,2vw,28px);align-items:baseline;max-width:62em;margin-bottom:clamp(20px,2.6vw,36px)}
+.lab-num{font:400 11px/1 var(--mono);color:var(--signal)}
+.lab-title{font:900 clamp(40px,6vw,104px)/.9 var(--display);font-stretch:62%;text-transform:uppercase}
+.lab-intro p{grid-column:2;max-width:46em;color:#d8d5cc}
+.lab-link{border-bottom:1px solid var(--signal);font-weight:600}
+.lab-link:hover{background:var(--signal)}
+.game{display:grid;grid-template-columns:minmax(0,1fr) 340px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
+.map{position:relative;border-right:1px solid var(--line);min-width:0}
+.map canvas{display:block;width:100%;touch-action:manipulation}
+.legend{margin:0;padding:10px 14px;border-top:1px solid var(--line);font:400 10px/1.4 var(--mono);text-transform:uppercase;color:var(--soft)}
+.side{padding:20px;display:flex;flex-direction:column;gap:12px}
+.trucks{display:grid;gap:8px}
+.truck{text-align:left;border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:5px;transition:border-color .3s,background-color .3s}
+.truck.on{border-color:var(--c);box-shadow:inset 4px 0 0 var(--c);background:rgba(255,255,255,.04)}
+.truck b{font-size:14px;font-weight:600}
+.truck span{font:400 10.5px/1.4 var(--mono);color:var(--soft)}
+.truck .cap{position:relative;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.truck .cap i{position:absolute;inset:0 auto 0 0;background:var(--c);transition:width .25s}
+.truck.full .cap i{background:#E5484D}
+.score div{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.score dt{font:400 10.5px/1.4 var(--mono);text-transform:uppercase;color:var(--soft)}
+.score dd{font-weight:700;font-variant-numeric:tabular-nums}
+.cmp{display:grid;gap:4px}
+.cmp i{display:block;height:6px;width:0;border-radius:3px;background:#fff;transition:width .35s}
+.cmp i+i{background:var(--signal)}
+.verdict{min-height:4.6em;font-size:14px;line-height:1.45;color:#d8d5cc}
+.gbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.side .btn{height:44px;padding:0 12px}
+.game.shake{animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.wh{position:relative;border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.wh canvas{display:block;width:100%;height:clamp(420px,58vw,660px);touch-action:pan-y}
+.wh-hud{position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:center;font:400 10.5px var(--mono);text-transform:uppercase;color:var(--soft);pointer-events:none}
+.wh-zoom{display:flex;gap:6px;pointer-events:auto}
+.wh-zoom button{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:var(--ink);color:#fff;font:500 18px/1 var(--mono);transition:background-color .3s,color .3s}
+.wh-zoom button:hover{background:var(--signal);color:var(--ink);border-color:var(--signal)}
+.wh-feed{position:absolute;top:46px;left:14px;width:min(330px,45%);font:400 10.5px/1.7 var(--mono);color:var(--soft);pointer-events:none}
+.wh-feed .k{color:var(--signal);text-transform:uppercase}
+.wh-feed ol{margin-top:4px}
+.wh-feed li{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:feedIn .4s var(--ease)}
+.wh-feed li b{color:#fff;font-weight:500}.wh-feed li i{font-style:normal;color:#3ddc84}
+@keyframes feedIn{from{opacity:0;transform:translateX(-8px)}}
+.wh-stat{position:absolute;right:14px;bottom:14px;text-align:right;background:rgba(10,10,10,.86);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.wh-stat span,.wh-stat small{display:block;font:400 10px/1.4 var(--mono);text-transform:uppercase;color:var(--soft)}
+.wh-stat b{display:block;font:900 clamp(30px,3.2vw,46px)/1 var(--display);font-stretch:62%;color:var(--signal);margin:4px 0}
+.wh-proof{margin-top:8px;padding:7px 11px;border:1px solid var(--signal);border-radius:999px;font:500 10px/1 var(--mono);text-transform:uppercase;color:var(--signal);transition:background-color .3s,color .3s}
+.wh-proof:hover{background:var(--signal);color:var(--ink)}
+.wh-card{position:absolute;left:14px;bottom:14px;max-width:min(380px,calc(100% - 28px));background:rgba(10,10,10,.86);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px}
+.wh-card .k{font:400 10.5px var(--mono);color:var(--signal);text-transform:uppercase}
+.wh-card h3{font:900 28px/1 var(--display);font-stretch:66%;text-transform:uppercase;margin:6px 0}
+.wh-card p{color:var(--soft);line-height:1.45}
+.wh.nogl canvas{display:none}.wh.nogl{min-height:220px}
+@media (max-width:900px){
+  .game{grid-template-columns:minmax(0,1fr)}
+  .map{border-right:0;border-bottom:1px solid var(--line)}
+  .lab-intro{grid-template-columns:minmax(0,1fr)}.lab-intro p{grid-column:1}
+}
+@media (max-width:760px){
+  .wh-feed{display:none}
+  .wh-card{bottom:auto;top:58px;padding:10px 12px}.wh-card p{display:none}
+  .wh-stat{padding:9px 11px}
+}
+@media print{.loader,.cursor,.grain,.tapes,.back-top,.nav{display:none!important}}
+</style>
+</head>
+<body>
+<span id="hero" class="top-anchor"></span>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-head"><span>Júlio Guedes</span><span>Logística · Dados · Código</span></div>
+  <div><span class="loader-num" id="loaderNum">000</span><span class="loader-bar"><i id="loaderBar"></i></span></div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true"><span class="c-ring"><b class="c-label"></b></span><span class="c-dot"></span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="#hero" class="logo" aria-label="Júlio Guedes, voltar ao início">JG<i></i></a>
+  <nav class="nav-links" aria-label="Menu principal"><ul>
+    <li><a href="#hero" class="nav-link"><span class="roll" data-text="Início"><span>Início</span></span></a></li>
+    <li><a href="#sobre" class="nav-link"><span class="roll" data-text="Sobre"><span>Sobre</span></span></a></li>
+    <li><a href="#skills" class="nav-link"><span class="roll" data-text="Habilidades"><span>Habilidades</span></span></a></li>
+    <li><a href="#powerbi" class="nav-link"><span class="roll" data-text="Power BI"><span>Power BI</span></span></a></li>
+    <li><a href="#projetos" class="nav-link"><span class="roll" data-text="Sistemas"><span>Sistemas</span></span></a></li>
+    <li><a href="#resume" class="nav-link"><span class="roll" data-text="Trajetória"><span>Trajetória</span></span></a></li>
+    <li><a href="#lab" class="nav-link"><span class="roll" data-text="Na prática"><span>Na prática</span></span></a></li>
+    <li><a href="#contato" class="nav-link"><span class="roll" data-text="Contato"><span>Contato</span></span></a></li>
+  </ul></nav>
+  <span class="nav-pct" aria-hidden="true"><span id="navPct">00</span>%</span>
+  <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+</header>
+
+<div class="menu" id="menu" inert><nav aria-label="Menu móvel"><ul>
+  <li><a href="#hero" class="menu-link"><small>00</small>Início</a></li>
+  <li><a href="#sobre" class="menu-link"><small>01</small>Sobre</a></li>
+  <li><a href="#skills" class="menu-link"><small>02</small>Habilidades</a></li>
+  <li><a href="#powerbi" class="menu-link"><small>03</small>Power BI</a></li>
+  <li><a href="#projetos" class="menu-link"><small>04</small>Sistemas</a></li>
+  <li><a href="#resume" class="menu-link"><small>05</small>Trajetória</a></li>
+  <li><a href="#lab" class="menu-link"><small>06</small>Na prática</a></li>
+  <li><a href="#contato" class="menu-link"><small>07</small>Contato</a></li>
+</ul></nav></div>
+
+<section class="hero" data-theme="ink" aria-label="Apresentação">
+  <div class="stage" id="stage">
+    <canvas class="code-layer" id="codeLayer" aria-hidden="true"></canvas>
+    <h1 class="hero-name" id="heroName"><span class="name-word">Júlio</span> <span class="name-word">Guedes</span></h1>
+    <div class="hero-ui" id="heroUi">
+      <p class="hero-status"><i></i>Aberto a novas oportunidades</p>
+      <p class="hero-hint">O caminhão é escrito com a minha stack. Passe o mouse para ver o sistema por trás do código.</p>
+      <p class="hero-role"><em>Analista de logística</em> <span class="role-word" id="roleWord" data-words="Desenvolvedor Full Stack,Dados e Power BI,IA aplicada · LLM · MCP,Python · FastAPI · Django,Roteirização e Frota">Desenvolvedor Full Stack</span></p>
+      <div class="hero-cta">
+        <a href="#sobre" class="btn btn--signal" data-magnetic><span>Saiba mais</span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7"/></svg></a>
+        <a href="#projetos" class="btn" data-magnetic><span>Ver projetos</span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a>
+      </div>
+      <div class="hero-strip">
+        <p class="strip-meta">Fortaleza - CE <time id="clock"></time></p>
+        <a class="strip-scroll" href="#sobre" aria-label="Ir para a seção Sobre"><span>Role</span><i></i></a>
+        <ul class="socials" id="socialsHero"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+  <div class="tapes" aria-hidden="true">
+    <div class="tape tape--ink" data-dir="-1"><div class="tape-track"><span class="tape-set"><b>Analista de Logística</b><i></i><b>Desenvolvedor Full Stack</b><i></i><b>Dados e Power BI</b><i></i><b>Gestão de Frota</b><i></i><b>Automação com IA</b><i></i></span></div></div>
+    <div class="tape tape--signal" data-dir="1"><div class="tape-track"><span class="tape-set"><b>Python</b><i></i><b>FastAPI</b><i></i><b>Django</b><i></i><b>React</b><i></i><b>PostgreSQL</b><i></i><b>Power BI</b><i></i><b>Roteirização</b><i></i></span></div></div>
+  </div>
+
+  <section id="sobre" class="sec sobre" data-theme="paper">
+    <header class="sec-head" data-depth="-.09">
+      <p class="sec-tag"><b>(01)</b> Sobre</p>
+      <h2 class="display" data-split><span class="line">Sobre <em>mim</em></span></h2>
+    </header>
+    <p class="manifesto" id="manifesto">Entendo o problema operacional, analiso o dado por trás dele e construo a ferramenta que resolve. Seis anos de logística me ensinaram onde a planilha trava. O código me deu como destravar.</p>
+    <div class="sobre-grid">
+      <div class="sobre-body">
+        <h3 class="sobre-title" data-reveal>Operação, dado <em>e código no mesmo perfil</em></h3>
+        <p data-reveal>Profissional de logística desde 2016, com experiência em frota, estoque, expedição e transporte. No Supermercado Moranguinho, implantei o controle por código de barras em cada seção do armazém e fechei o ano com <mark class="marker">o menor volume de trocas entre as 15 lojas da rede.</mark></p>
+        <p data-reveal>Hoje, como analista de logística na Gosto Mineiro, respondo por roteirização, custos da frota e indicadores operacionais. Para resolver gargalos da operação, desenvolvi <mark class="marker">três sistemas que estão em produção: GestFrota, Rastreio e ProdManutenção,</mark> construídos com Python (FastAPI e Django), React e PostgreSQL.</p>
+        <p data-reveal>Também aplico IA generativa para eliminar trabalho manual. Desenvolvi uma automação que lê os e-mails de ocorrências, multas e agendamentos e, com apoio de um LLM, entrega um resumo diário para a tomada de decisão. Integro os sistemas a LLMs via <mark class="marker">MCP (Model Context Protocol),</mark> com acesso somente leitura, para consultar custos e manutenções em linguagem natural, e uso agentes de IA no desenvolvimento para entregar com mais velocidade e qualidade.</p>
+        <div class="stats" data-reveal>
+          <div><b>6</b><span>anos de logística</span></div>
+          <div><b>3</b><span>anos desenvolvendo</span></div>
+          <div><b>3</b><span>sistemas em produção</span></div>
+        </div>
+        <ul class="socials socials--large" id="socialsAbout" data-reveal></ul>
+      </div>
+      <div class="rig-slot" data-depth=".05">
+        <div class="rig" id="rig">
+          <span class="strap" aria-hidden="true"></span>
+          <article class="badge" id="badge" data-cursor="Arraste" aria-label="Crachá de Júlio Guedes">
+            <span class="badge-clip" aria-hidden="true"></span>
+            <div class="badge-top"><span class="logo">JG<i></i></span><span class="badge-role">Logística · Dados<br>Desenvolvimento</span></div>
+            <!-- Para usar sua foto: coloque <img src="foto.jpg" alt="" draggable="false"> dentro de .badge-photo -->
+            <div class="badge-photo"><span aria-hidden="true">JG</span></div>
+            <p class="badge-name">Júlio Guedes</p>
+            <dl class="badge-data">
+              <div><dt>Base</dt><dd>Fortaleza - CE</dd></div>
+              <div><dt>Telefone</dt><dd>(85) 98198-1846</dd></div>
+              <div><dt>E-mail</dt><dd>jwguedes01@gmail.com</dd></div>
+              <div><dt>Na logística desde</dt><dd>2016</dd></div>
+              <div><dt>Hoje</dt><dd>Gosto Mineiro · Analista Jr</dd></div>
+            </dl>
+            <span class="badge-code" aria-hidden="true"></span>
+            <span class="badge-sheen" aria-hidden="true"></span>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="sec skills" data-theme="ink">
+    <header class="sec-head" data-depth="-.08">
+      <p class="sec-tag"><b>(02)</b> Habilidades</p>
+      <h2 class="display" data-split><span class="line">Com o que eu</span> <span class="line"><em>trabalho</em></span></h2>
+    </header>
+    <ol class="stack-list" id="stackList">
+      <li class="stack-row" data-reveal><span class="stack-num">01</span><h3 class="stack-title">Back-end</h3><ul class="tags"><li class="tag">Python</li><li class="tag">FastAPI</li><li class="tag">Django</li><li class="tag">APIs REST</li><li class="tag">Autenticação e permissões</li></ul></li>
+      <li class="stack-row" data-reveal><span class="stack-num">02</span><h3 class="stack-title">Banco de dados</h3><ul class="tags"><li class="tag">PostgreSQL</li><li class="tag">Supabase</li><li class="tag">MySQL</li><li class="tag">SQLite</li><li class="tag">SQL</li><li class="tag">Modelagem</li></ul></li>
+      <li class="stack-row" data-reveal><span class="stack-num">03</span><h3 class="stack-title">Front-end</h3><ul class="tags"><li class="tag">React 19</li><li class="tag">JavaScript</li><li class="tag">HTML e CSS</li><li class="tag">Recharts</li><li class="tag">Chart.js</li></ul></li>
+      <li class="stack-row" data-reveal><span class="stack-num">04</span><h3 class="stack-title">Dados e BI</h3><ul class="tags"><li class="tag">Power BI</li><li class="tag">DAX</li><li class="tag">Deneb</li><li class="tag">pandas</li><li class="tag">openpyxl</li><li class="tag">Excel avançado</li><li class="tag">SQL</li><li class="tag">ETL</li></ul></li>
+      <li class="stack-row" data-reveal><span class="stack-num">05</span><h3 class="stack-title">Logística</h3><ul class="tags"><li class="tag">Roteirização</li><li class="tag">Gestão de frota</li><li class="tag">Custos logísticos</li><li class="tag">OTIF</li><li class="tag">Lead time</li><li class="tag">Custo/kg</li><li class="tag">Estoque e inventário</li><li class="tag">AET e Inmetro</li></ul></li>
+      <li class="stack-row" data-reveal><span class="stack-num">06</span><h3 class="stack-title">Sistemas</h3><ul class="tags"><li class="tag">SAP</li><li class="tag">TOTVS</li><li class="tag">Sankhya</li><li class="tag">ERP-Flex</li><li class="tag">Procfit</li><li class="tag">WMS</li><li class="tag">Frotix</li><li class="tag">Cobli</li><li class="tag">TicketLog</li><li class="tag">Veic</li></ul></li>
+      <li class="stack-row" data-reveal><span class="stack-num">07</span><h3 class="stack-title">IA aplicada</h3><ul class="tags"><li class="tag">LLMs</li><li class="tag">Agentes de IA</li><li class="tag">MCP</li><li class="tag">Automação com IA</li><li class="tag">Agentes no terminal (CLI)</li><li class="tag">Claude Code</li><li class="tag">Codex</li><li class="tag">Hermes Agent</li><li class="tag">DeepSeek</li></ul></li>
+      <li class="stack-row" data-reveal><span class="stack-num">08</span><h3 class="stack-title">Deploy</h3><ul class="tags"><li class="tag">Render</li><li class="tag">Vercel</li><li class="tag">AWS S3</li><li class="tag">Netlify</li><li class="tag">VPS Hostinger</li><li class="tag">Git</li></ul></li>
+    </ol>
+  </section>
+
+  <section id="powerbi" class="sec powerbi" data-theme="paper">
+    <header class="sec-head" data-depth="-.09">
+      <p class="sec-tag"><b>(03)</b> Power BI</p>
+      <h2 class="display" data-split><span class="line">Operação em <em>números</em></span></h2>
+    </header>
+    <div class="bi-top" data-reveal>
+      <p class="bi-lead">Dashboards gerenciais que transformam a operação logística em indicadores: entregas, diesel e abastecimento, com comparativo ao ano anterior e quebra por placa, motorista e fornecedor.</p>
+      <ul class="tags"><li class="tag">OTIF</li><li class="tag">Lead time</li><li class="tag">Custo/kg</li><li class="tag">Custo por km</li><li class="tag">km/L</li><li class="tag">DAX</li></ul>
+    </div>
+    <div class="bi-grid" id="biGrid"></div>
+    <p class="bi-note" data-reveal>Dados fictícios. Os painéis reproduzem a estrutura dos dashboards usados na operação.</p>
+  </section>
+
+  <section id="projetos" class="gallery" data-theme="ink">
+    <div class="gallery-sticky" id="galleryPin">
+      <div class="gallery-ghost" id="galleryGhost" aria-hidden="true"><span>Projetos</span><span>Projetos</span><span>Projetos</span></div>
+      <div class="gallery-track" id="galleryTrack">
+        <header class="gallery-intro">
+          <p class="sec-tag"><b>(04)</b> Sistemas</p>
+          <h2 class="display" data-split><span class="line">Sistemas</span> <span class="line"><em>reais</em></span></h2>
+          <p class="gallery-sub">Três sistemas que eu construí para substituir controles manuais, todos nascidos de um problema da operação e em uso hoje. Os dados das telas são fictícios.</p>
+          <span class="gallery-hint" aria-hidden="true">Role <svg class="arrow" viewBox="0 0 24 24"><path d="M4 12h16M13 5l7 7-7 7"/></svg></span>
+        </header>
+        <!-- painéis gerados pelo script a partir da lista PROJECTS -->
+      </div>
+      <div class="gallery-rail" id="galleryRail">
+        <span class="rail-count"><b id="railNow">01</b> / <span id="railTotal">03</span></span>
+        <div class="rail-ticks" id="railTicks" role="group" aria-label="Ir para um projeto"></div>
+        <span class="rail-name" id="railName" aria-live="off">GestFrota</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="sec resume" data-theme="paper">
+    <header class="sec-head" data-depth="-.09">
+      <p class="sec-tag"><b>(05)</b> Trajetória</p>
+      <h2 class="display" data-split><span class="line">Do chão <em>ao código</em></span></h2>
+    </header>
+    <div class="resume-grid">
+      <div>
+        <h3 class="col-title" data-reveal><span>Experiência</span></h3>
+        <ol class="timeline" id="timeline">
+          <li class="tl now" data-reveal>
+            <span class="tl-period">Dez 2025 — Atual</span>
+            <h4 class="tl-title">Analista de Logística Jr</h4>
+            <p class="tl-org">Gosto Mineiro · Fortaleza, CE</p>
+            <ul class="tl-list">
+              <li>Gestão do transporte da frota própria: entregas, veículos, motoristas, devoluções e prazos.</li>
+              <li>Roteirização no Frotix com foco em reduzir quilometragem e custo.</li>
+              <li>Custos da frota: manutenção, abastecimento (TicketLog e Veic), multas, km/L e custo por km. AET e aferições do Inmetro.</li>
+              <li>Criei e mantenho <b>GestFrota, Rastreio e ProdManutenção</b>, além da automação que resume as ocorrências do dia com IA.</li>
+            </ul>
+          </li>
+          <li class="tl now" data-reveal>
+            <span class="tl-period">2023 — Atual</span>
+            <h4 class="tl-title">Desenvolvedor Full Stack</h4>
+            <p class="tl-org">Freelancer</p>
+            <ul class="tl-list">
+              <li>Sites e sistemas para pequenos negócios, como a oficina Natan Motos e o cardápio digital da F&amp;T Império Salgaderia, com pedidos pelo WhatsApp.</li>
+            </ul>
+          </li>
+          <li class="tl" data-reveal>
+            <span class="tl-period">2024 — 2025</span>
+            <h4 class="tl-title">Assistente de Logística → Assistente de Logística II</h4>
+            <p class="tl-org">Prohospital</p>
+            <span class="tl-step">Estoque</span>
+            <ul class="tl-list">
+              <li>Entrada e saída de produtos pelo WMS, conferência no recebimento, endereçamento e inventários.</li>
+              <li>Planilhas com fórmulas no Excel e dashboards para análise do estoque.</li>
+            </ul>
+            <span class="tl-step">Promovido · Expedição</span>
+            <ul class="tl-list">
+              <li>Planejamento de cargas e roteirização, com OTIF, lead time e custo por kg.</li>
+              <li>Dashboards de expedição e fretes no Power BI e primeiras automações de processo.</li>
+            </ul>
+          </li>
+          <li class="tl" data-reveal>
+            <span class="tl-period">2021 — 2022</span>
+            <h4 class="tl-title">Auxiliar de Escritório · Estoque</h4>
+            <p class="tl-org">Supermercado Moranguinho</p>
+            <ul class="tl-list">
+              <li>Implantei <b>código de barras em cada seção do armazém</b> para controlar cada produto que saía do estoque.</li>
+              <li>Responsável por todas as devoluções da loja: fechei o ano com <b>R$ 3.290,43 em trocas</b>, o único das 15 lojas da rede nesse patamar.</li>
+              <li>Notas fiscais de entrada, inventários, giro e controle de validade.</li>
+            </ul>
+          </li>
+          <li class="tl" data-reveal>
+            <span class="tl-period">2016 — 2018</span>
+            <h4 class="tl-title">Assistente Administrativo em Transporte</h4>
+            <p class="tl-org">Expresso Guanabara · Frota</p>
+            <ul class="tl-list"><li>Controle de documentos, custos operacionais e agendamento de manutenções da frota.</li></ul>
+          </li>
+        </ol>
+      </div>
+      <div class="col-edu">
+        <h3 class="col-title" data-reveal><span>Formação</span></h3>
+        <div class="edu" data-reveal>
+          <span class="tl-period">Cursando</span>
+          <h4 class="tl-title">Ciência da Computação</h4>
+          <p class="tl-org">Descomplica</p>
+        </div>
+        <div class="edu" data-reveal>
+          <span class="tl-period">Concluído em 2026</span>
+          <h4 class="tl-title">Tecnólogo em Logística</h4>
+          <p class="tl-org">UNINASSAU</p>
+        </div>
+        <div class="edu" data-reveal>
+          <span class="tl-period">Concluído em 2025</span>
+          <h4 class="tl-title">Técnico em Logística</h4>
+        </div>
+        <div class="edu" data-reveal>
+          <span class="tl-period">Resultado comprovado</span>
+          <h4 class="tl-title">Trocas do ano: R$ 3.290,43</h4>
+          <p class="tl-org">Supermercado Moranguinho · <a class="lab-link" href="#lab">ver o estoque em 3D ↓</a></p>
+          <button type="button" class="cert" data-zoom="prova" data-title="Relatório de trocas e devoluções do ano · total R$ 3.290,43 · fornecedores borrados por privacidade" data-cursor="Ampliar" aria-label="Ampliar comprovante">
+            <img data-img="prova" alt="Relatório de trocas e devoluções com total de R$ 3.290,43">
+            <span>Ver comprovante · relatório do sistema da loja</span>
+          </button>
+        </div>
+        <div class="edu systems" data-reveal>
+          <span class="tl-period">Sistemas que já operei</span>
+          <ul class="tags"><li class="tag">SAP</li><li class="tag">TOTVS</li><li class="tag">Sankhya</li><li class="tag">ERP-Flex</li><li class="tag">Procfit</li><li class="tag">WMS</li><li class="tag">Frotix</li><li class="tag">Cobli</li><li class="tag">TicketLog</li><li class="tag">Veic</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lab" class="sec lab" data-theme="ink">
+    <header class="sec-head" data-depth="-.08">
+      <p class="sec-tag"><b>(06)</b> Na prática</p>
+      <h2 class="display" data-split><span class="line">Mão na</span> <span class="line"><em>massa</em></span></h2>
+    </header>
+
+    <div class="lab-block">
+      <div class="lab-intro" data-reveal>
+        <span class="lab-num">01</span>
+        <h3 class="lab-title">Monte a rota</h3>
+        <p>Dois caminhões, dez entregas. Escolha o caminhão e clique nas entregas na ordem da rota. Respeite a capacidade e os prazos: o custo é km × R$ 3,20, mais R$ 80 por atraso. A meta é empatar com o algoritmo (varredura angular, 2-opt e realocação entre caminhões).</p>
+      </div>
+      <div class="game" data-reveal>
+        <div class="map">
+          <canvas id="map" data-cursor="Entregar" role="img" aria-label="Mapa de entregas: escolha um caminhão e clique nas entregas para montar a rota"></canvas>
+          <p class="legend">número no ponto = caixas · ⏱ = prazo · clique de novo na última parada para tirá-la</p>
+        </div>
+        <div class="side">
+          <div class="trucks" id="trucks"></div>
+          <dl class="score">
+            <div><dt>entregas</dt><dd id="gStops">0 / 10</dd></div>
+            <div><dt>km rodados</dt><dd id="gKm">0,0 km</dd></div>
+            <div><dt>atrasos</dt><dd id="gLate">0</dd></div>
+            <div><dt>seu custo</dt><dd id="gYou">R$ 0</dd></div>
+            <div><dt>meta do algoritmo</dt><dd id="gAlgo">R$ 0</dd></div>
+          </dl>
+          <div class="cmp" aria-hidden="true"><i id="gBarYou"></i><i id="gBarAlgo"></i></div>
+          <p class="verdict" id="gVerdict" aria-live="polite"></p>
+          <div class="gbtns">
+            <button class="btn" type="button" id="gUndo">Desfazer</button>
+            <button class="btn" type="button" id="gShow">Ver algoritmo</button>
+          </div>
+          <button class="btn btn--signal" type="button" id="gNew">Nova carga</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="lab-block">
+      <div class="lab-intro" data-reveal>
+        <span class="lab-num">02</span>
+        <h3 class="lab-title">O estoque do Moranguinho</h3>
+        <p>Uma representação em 3D do estoque onde implantei código de barras em cada seção para controlar cada produto que saía. Com esse controle, fechei o ano com R$ 3.290,43 em trocas e devoluções, o único das 15 lojas da rede nesse patamar. Arraste para girar e clique numa caixa para ler a etiqueta.</p>
+      </div>
+      <div class="wh" id="wh" data-reveal>
+        <canvas id="whCanvas" data-cursor="Girar" role="img" aria-label="Estoque 3D com seções de mercearia, bebidas e limpeza, etiquetas de código de barras sendo lidas, empilhadeira e caminhão na doca."></canvas>
+        <div class="wh-hud"><span>Arraste para girar · clique numa caixa</span><div class="wh-zoom"><button type="button" id="whIn" aria-label="Aproximar">+</button><button type="button" id="whOut" aria-label="Afastar">−</button></div></div>
+        <div class="wh-feed" aria-hidden="true"><span class="k">leituras de saída · simulação</span><ol id="whFeed"></ol></div>
+        <div class="wh-stat"><span>trocas e devoluções no ano</span><b>R$ 3.290,43</b><small>único das 15 lojas nesse patamar</small><button type="button" class="wh-proof" data-zoom="prova" data-title="Relatório de trocas e devoluções do ano · total R$ 3.290,43 · fornecedores borrados por privacidade" data-cursor="Ampliar" aria-label="Ampliar comprovante">Ver comprovante</button></div>
+        <div class="wh-card" id="whCard" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flood" id="flood" data-theme="ink">
+    <span id="contato" class="flood-anchor"></span>
+    <div class="flood-sticky">
+      <div class="flood-layer flood-over" id="floodOver" data-theme="signal">
+        <div class="flood-inner">
+          <p class="sec-tag"><b>(07)</b> Contato</p>
+          <h2 class="display"><span class="line">Vamos <em>conversar?</em></span></h2>
+          <p class="flood-sub">Aberto a oportunidades em logística, dados e desenvolvimento, e a projetos de sistemas e automação.</p>
+          <ul class="contact-rows">
+            <li><a class="c-row" href="mailto:jwguedes01@gmail.com"><span class="c-kind">E-mail</span><strong class="c-value">jwguedes01@gmail.com</strong><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a></li>
+            <li><a class="c-row" href="https://wa.me/5585981981846" target="_blank" rel="noopener noreferrer"><span class="c-kind">WhatsApp</span><strong class="c-value">(85) 98198-1846</strong><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a></li>
+            <li><a class="c-row" href="https://www.linkedin.com/in/julio-guedes-" target="_blank" rel="noopener noreferrer"><span class="c-kind">LinkedIn</span><strong class="c-value">julio-guedes-</strong><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a></li>
+            <li><a class="c-row" href="https://github.com/jwguedes01-afk" target="_blank" rel="noopener noreferrer"><span class="c-kind">GitHub</span><strong class="c-value">jwguedes01-afk</strong><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="footer" data-theme="ink">
+  <div class="footer-row">
+    <span class="logo">JG<i></i></span>
+    <p>© <span id="year"></span> <strong>Júlio Guedes</strong> · Fortaleza, CE</p>
+    <ul class="socials" id="socialsFoot"></ul>
+  </div>
+  <p class="footer-giant display" aria-hidden="true"><span class="line" id="giant">Júlio Guedes</span></p>
+</footer>
+
+<a href="#hero" class="back-top" id="backTop" aria-label="Voltar ao topo">
+  <svg class="back-ring" id="backRing" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="ringPath" d="M50 50m-37 0a37 37 0 1 1 74 0a37 37 0 1 1-74 0"/></defs><text><textPath href="#ringPath" textLength="228">VOLTAR AO TOPO • VOLTAR AO TOPO •</textPath></text></svg>
+  <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg>
+</a>
+
+<dialog class="zoom" id="zoom" aria-label="Imagem ampliada">
+  <button class="zoom-close" type="button">Fechar ×</button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+</dialog>
+
+<script>
+/* imagens dos sistemas, dashboards e comprovante (arquivos em /public) */
+window.IMG={
+  gestfrota:'/projects/gestfrota-dashboard.png',
+  rastreio:'/projects/rastreio-dashboard.png',
+  prodmanutencao:'/projects/prodmanutencao-dashboard.png',
+  entregas:'/powerbi/entregas.png',
+  diesel:'/powerbi/compras-diesel.png',
+  externo:'/powerbi/abastecimento-externo.png',
+  interno:'/powerbi/abastecimento-interno.png',
+  prova:'/projects/comprovante-trocas.jpg'
+};
+</script>
+<script>
+(()=>{'use strict';
+const root=document.documentElement, $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t, damp=(a,b,tau,dt)=>lerp(a,b,1-Math.exp(-dt/tau));
+const TAU=Math.PI*2, INK='#0a0a0a', SIG='#FFC400', SIG_RGB='255,196,0', IMG=window.IMG;
+
+/* ---------- conteúdo: redes e projetos ---------- */
+const ICON={
+  in:'<svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>',
+  gh:'<svg class="ico" viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2-6-2.5M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>',
+  wa:'<svg class="ico" viewBox="0 0 24 24"><path d="M3 21l1.6-4.6A8.5 8.5 0 1 1 7.7 19.6z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1 2 1-.5 1.5c-3 .5-7-3.5-6.5-6.5L11 8.5l1 2z"/></svg>',
+  mail:'<svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>'
+};
+const SOCIAL=[['in','LinkedIn','https://www.linkedin.com/in/julio-guedes-'],['gh','GitHub','https://github.com/jwguedes01-afk'],['wa','WhatsApp','https://wa.me/5585981981846'],['mail','E-mail','mailto:jwguedes01@gmail.com']];
+['socialsHero','socialsAbout','socialsFoot'].forEach(id=>{$('#'+id).innerHTML=SOCIAL.map(([k,l,h])=>`<li><a href="${h}" ${h.startsWith('http')?'target="_blank" rel="noopener noreferrer"':''} aria-label="${l}" data-magnetic>${ICON[k]}</a></li>`).join('');});
+
+const PROJECTS=[
+  {name:'GestFrota',title:'Gest<br>Frota',img:'gestfrota',ratio:1779/884,bar:'gestfrota · dashboard custo frota',badge:'Projeto próprio · em produção',
+   desc:'Gestão de custos da frota: manutenção, combustível e custos fixos em dashboards em tempo real. O motorista lança o abastecimento pelo celular com PIN, e o km/L é calculado por viagem.',
+   tags:['React 19','FastAPI','Supabase','PostgreSQL','Recharts']},
+  {name:'Rastreio',title:'Rastreio',img:'rastreio',ratio:1791/878,bar:'rastreio · visão geral das operações',badge:'Projeto próprio · em produção',
+   desc:'Recebimento, saída e entrega de cargas por nota fiscal para transportadoras: bipagem de NF-e via API, saldo de peso garantido no banco e baixa com foto do canhoto em S3 privado.',
+   tags:['Python','Django','PostgreSQL','S3','django-axes']},
+  {name:'ProdManutenção',title:'Prod<br>Manutenção',img:'prodmanutencao',ratio:1791/878,bar:'prodmanutenção · visão geral',badge:'Projeto próprio · em produção',
+   desc:'Manutenção preventiva industrial: técnicos abrem e concluem OS pelo celular com QR Code nos equipamentos, e as OS preventivas são geradas sozinhas a partir do plano.',
+   tags:['React 19','FastAPI','Supabase','RLS','Render']}
+];
+const BI=[
+  ['entregas','Entregas','Entregas realizadas x não realizadas por dia, taxa de sucesso e falha, desempenho por motorista e motivos de devolução.'],
+  ['diesel','Compras de diesel','Volume, valor pago e preço médio por litro mês a mês, com comparativo ao ano anterior e análise por fornecedor.'],
+  ['externo','Abastecimento externo','Custo total, valor médio por litro e ticket médio, com variação contra o ano anterior e quebra por placa, motorista e serviço.'],
+  ['interno','Abastecimento interno','Litros abastecidos por mês, diesel e Arla, por placa e por motorista, com filtros de período e veículo.']
+];
+$('#biGrid').innerHTML=BI.map(([k,t,d],i)=>`<article class="bi-card" data-reveal>
+  <button type="button" class="bi-shot" data-zoom="${k}" data-title="Dashboard de ${t} · Power BI · dados fictícios" data-cursor="Ampliar" aria-label="Ampliar dashboard de ${t}"><img data-img="${k}" alt="Dashboard de ${t} no Power BI, com dados fictícios"></button>
+  <span class="bi-num">${String(i+1).padStart(2,'0')} · Power BI</span>
+  <h3>${t}</h3><p>${d}</p>
+  <ul class="tags"><li class="tag">Power BI</li><li class="tag">DAX</li><li class="tag">Excel</li></ul></article>`).join('');
+const track=$('#galleryTrack');
+track.insertAdjacentHTML('beforeend',PROJECTS.map((p,i)=>`
+  <article class="pj" data-name="${p.name}">
+    <div class="pj-info">
+      <span class="pj-num">${String(i+1).padStart(2,'0')}</span>
+      <span class="pj-badge">${p.badge}</span>
+      <h3 class="pj-title">${p.title}</h3>
+      <p class="pj-desc">${p.desc}</p>
+      <ul class="tags">${p.tags.map(t=>`<li class="tag">${t}</li>`).join('')}</ul>
+    </div>
+    <button type="button" class="frame pj-media" data-zoom="${p.img}" data-title="${p.name} · dados fictícios" data-cursor="Ampliar" aria-label="Ampliar ${p.name}">
+      <span class="frame-bar"><i></i><i></i><i></i><span>${p.bar}</span></span>
+      <span class="frame-view"><img data-img="${p.img}" data-ratio="${p.ratio.toFixed(4)}" alt="Tela do ${p.name} com dados fictícios"></span>
+    </button>
+  </article>`).join(''));
+$('#railTotal').textContent=String(PROJECTS.length).padStart(2,'0');
+$$('img[data-img]').forEach(im=>{im.src=IMG[im.dataset.img];});
+
+/* ---------- sempre ativo ---------- */
+$('#year').textContent=new Date().getFullYear();
+const clockEl=$('#clock'), fmt=new Intl.DateTimeFormat('pt-BR',{timeZone:'America/Fortaleza',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+const tick=()=>{clockEl.textContent=fmt.format(new Date());}; tick(); setInterval(tick,1000);
+
+const burger=$('#burger'), menu=$('#menu');
+const setMenu=o=>{menu.classList.toggle('open',o);menu.inert=!o;root.classList.toggle('menu-open',o);burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Fechar menu':'Abrir menu');};
+burger.addEventListener('click',()=>setMenu(!menu.classList.contains('open')));
+$$('.menu-link').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false);});
+
+const zoom=$('#zoom'), zImg=$('img',zoom), zCap=$('figcaption',zoom);
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-zoom]'); if(!b||typeof zoom.showModal!=='function') return;
+  e.preventDefault(); zImg.src=IMG[b.dataset.zoom]; zImg.alt=(b.getAttribute('aria-label')||'').replace(/^Ampliar /,''); zCap.textContent=b.dataset.title||'';
+  zoom.showModal(); root.classList.add('zoom-open');
+});
+zoom.addEventListener('click',()=>zoom.close());
+zoom.addEventListener('close',()=>root.classList.remove('zoom-open'));
+
+/* ---------- nome ajustado à largura ---------- */
+const heroName=$('#heroName'), nameWords=$$('.name-word',heroName), stage=$('#stage');
+const fitTo=(el,measure,apply,box,maxSize)=>{let size=parseFloat(getComputedStyle(el).fontSize);for(let k=0;k<2;k++){const w=measure(size);if(!w)return;size=Math.min(maxSize,size*box/w);apply(size);}};
+const fitHero=()=>{
+  const box=heroName.clientWidth, stacked=getComputedStyle(heroName).flexDirection==='column';
+  if(stacked) nameWords.forEach(w=>fitTo(w,()=>w.getBoundingClientRect().width,s=>{w.style.fontSize=s+'px';},box,Infinity));
+  else fitTo(nameWords[0],s=>nameWords[0].getBoundingClientRect().width+nameWords[1].getBoundingClientRect().width+s*.18,s=>nameWords.forEach(w=>{w.style.fontSize=s+'px';}),box,innerHeight*.44);
+  stage.style.setProperty('--name-h',(heroName.offsetHeight+parseFloat(getComputedStyle(nameWords[0]).fontSize)*.12)+'px'); // folga para o acento do Ú
+};
+const giant=$('#giant');
+const fitGiant=()=>{giant.style.whiteSpace='nowrap';giant.style.width='max-content';fitTo(giant,()=>giant.getBoundingClientRect().width,s=>{giant.style.fontSize=s+'px';},giant.parentElement.clientWidth,innerHeight*.5);};
+const refit=()=>{fitHero();fitGiant();};
+
+if(!root.classList.contains('motion')){refit();addEventListener('resize',refit);if(document.fonts)document.fonts.ready.then(refit);return;}
+root.classList.add('anim');
+
+const GLYPHS='!<>-_/[]{}=+*^?#01';
+const scramble=(el,to,dur=720)=>{const from=el.textContent,len=Math.max(from.length,to.length),t0=performance.now();
+  const step=now=>{const p=clamp((now-t0)/dur);let out='';for(let i=0;i<len;i++){const s=.3+((i+1)/len)*.7;out+=p>=s?(to[i]||''):p>=s-.3?GLYPHS[Math.floor(Math.random()*GLYPHS.length)]:(from[i]||'');}el.textContent=out;if(p<1)requestAnimationFrame(step);};
+  requestAnimationFrame(step);};
+
+/* ---------- quebra de texto para as animações ---------- */
+const splitChars=el=>{el.setAttribute('aria-label',el.textContent.replace(/\s+/g,' ').trim());let i=0;
+  const walk=node=>{[...node.childNodes].forEach(n=>{if(n.nodeType===1){walk(n);return;}if(n.nodeType!==3)return;const f=document.createDocumentFragment();
+    n.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.append(' ');return;}const w=document.createElement('span');w.className='w';w.setAttribute('aria-hidden','true');
+      [...t].forEach(ch=>{const c=document.createElement('span');c.className='c';c.textContent=ch;c.style.setProperty('--i',i++);w.append(c);});f.append(w);});n.replaceWith(f);});};
+  walk(el);};
+$$('[data-split]').forEach(splitChars);
+
+const manifesto=$('#manifesto');
+const inkWords=manifesto.textContent.trim().split(/\s+/).map(t=>{const s=document.createElement('span');s.className='ink';s.textContent=t;return s;});
+manifesto.textContent='';inkWords.forEach((s,i)=>{if(i)manifesto.append(' ');manifesto.append(s);});
+
+const revealObs=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');revealObs.unobserve(e.target);}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+$$('[data-reveal],[data-split]').forEach(el=>revealObs.observe(el));
+const tagObs=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;tagObs.unobserve(e.target);const l=e.target.lastElementChild,t=l.dataset.text;l.textContent='';scramble(l,t,900);}),{threshold:1});
+$$('.sec-tag').forEach(tag=>{const l=document.createElement('span');l.textContent=tag.lastChild.textContent.trim();l.dataset.text=l.textContent;tag.lastChild.replaceWith(' ',l);tagObs.observe(tag);});
+
+/* ---------- motor: um único rAF, medidas em cache ---------- */
+const fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+const S={y:scrollY,sy:scrollY,vy:0,vw:root.clientWidth,vh:innerHeight,px:-1,py:-1,pointer:false};
+const scenes=[],measures=[],scene=f=>scenes.push(f),onMeasure=f=>measures.push(f);
+const pageTop=el=>el.getBoundingClientRect().top+scrollY;
+const measure=()=>{S.vw=root.clientWidth;S.vh=innerHeight;refit();measures.forEach(f=>f());};
+
+/* ---------- hero: um caminhão escrito com a stack ----------
+   O mapa de luz é um caminhão desenhado num canvas escondido (não precisa de foto).
+   A lente que segue o mouse revela o sistema por trás do código: o dashboard do GestFrota. */
+const canvas=$('#codeLayer'), ctx=canvas.getContext('2d'), heroUi=$('#heroUi');
+const STACK='Python FastAPI Django React PostgreSQL Supabase Power BI DAX SQL pandas Roteirização OTIF Lead time km/L Frotix WMS TicketLog Veic Git Render ';
+const code={W:0,H:0,layers:[],ready:false};
+const TONES=[{f:'rgba(255,255,255,.05)',w:300},{f:`rgba(${SIG_RGB},.14)`,w:300},{f:`rgba(${SIG_RGB},.3)`,w:300},{f:`rgba(${SIG_RGB},.52)`,w:400},{f:`rgba(${SIG_RGB},.78)`,w:500},{f:SIG,w:600},{f:'#fff6cc',w:600}];
+const toneOf=v=>v<.07?0:v<.22?1:v<.36?2:v<.5?3:v<.64?4:v<.8?5:6;
+const dash=new Image(); dash.src=IMG.gestfrota;
+function truckMap(W,H){
+  const mw=200, mh=Math.max(60,Math.round(200*H/W)), c=document.createElement('canvas'); c.width=mw; c.height=mh;
+  const g=c.getContext('2d'); g.fillStyle='#000'; g.fillRect(0,0,mw,mh);
+  const stacked=W/H<1, s=Math.min(mw*(stacked?.86:.56)/100, mh*.46/52), ox=mw/2-49*s, oy=mh*(stacked?.3:.36)-26*s;
+  g.save(); g.translate(ox,oy); g.scale(s,s);
+  let gr=g.createLinearGradient(0,0,0,38); gr.addColorStop(0,'#fff'); gr.addColorStop(1,'#7a7a7a');
+  g.fillStyle=gr; g.fillRect(0,2,64,36);                                         // baú
+  g.fillStyle='rgba(0,0,0,.35)'; for(let x=8;x<64;x+=8) g.fillRect(x,4,.8,32);   // nervuras
+  gr=g.createLinearGradient(66,12,96,40); gr.addColorStop(0,'#e6e6e6'); gr.addColorStop(1,'#8a8a8a');
+  g.fillStyle=gr; g.beginPath(); g.moveTo(66,12); g.lineTo(84,12); g.lineTo(97,25); g.lineTo(97,40); g.lineTo(66,40); g.closePath(); g.fill(); // cabine
+  g.fillStyle='#262626'; g.beginPath(); g.moveTo(70,15); g.lineTo(83,15); g.lineTo(91,24); g.lineTo(70,24); g.closePath(); g.fill(); // janela
+  g.fillStyle='#bdbdbd'; g.fillRect(0,38,98,3);                                   // chassi
+  [[14,44],[27,44],[85,44]].forEach(([x,y])=>{g.fillStyle='#f2f2f2';g.beginPath();g.arc(x,y,6.4,0,TAU);g.fill();g.fillStyle='#3a3a3a';g.beginPath();g.arc(x,y,2.6,0,TAU);g.fill();});
+  g.fillStyle='#5a5a5a'; g.fillRect(-60,50.6,220,1);                              // estrada
+  g.restore();
+  return {d:g.getImageData(0,0,mw,mh).data,mw,mh};
+}
+function buildCode(){
+  const W=stage.clientWidth,H=stage.clientHeight; if(!W||!H) return;
+  const dpr=Math.min(devicePixelRatio||1,2,Math.sqrt(3.2e6/(W*H)));
+  code.W=W; code.H=H; canvas.width=Math.round(W*dpr); canvas.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+  const map=truckMap(W,H), size=clamp(Math.round(Math.min(W,H)/84),8,13);
+  const font=w=>`${w} ${size}px "Martian Mono", ui-monospace, monospace`;
+  ctx.font=font(500); const cw=ctx.measureText('M').width, ch=size*1.28, cols=Math.ceil(W/cw), rows=Math.ceil(H/ch);
+  code.layers=[0,1,2].map(shift=>{
+    const cv=document.createElement('canvas'); cv.width=canvas.width; cv.height=canvas.height;
+    const g=cv.getContext('2d'); g.setTransform(dpr,0,0,dpr,0,0); g.textBaseline='top';
+    const buckets=TONES.map(()=>[]); let idx=shift*3;
+    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+      const glyph=STACK[idx++%STACK.length]; if(glyph===' ') continue;
+      const x=c*cw, y=r*ch, mx=Math.min(map.mw-1,Math.floor((x+cw/2)/W*map.mw)), my=Math.min(map.mh-1,Math.floor((y+ch/2)/H*map.mh));
+      const v=(map.d[(my*map.mw+mx)*4]||0)/255; buckets[toneOf(v)].push(glyph,x,y);
+    }
+    buckets.forEach((l,t)=>{g.font=font(TONES[t].w);g.fillStyle=TONES[t].f;for(let i=0;i<l.length;i+=3)g.fillText(l[i],l[i+1],l[i+2]);});
+    return cv;
+  });
+  code.ready=true;
+}
+const lens={x:0,y:0,r:0}, intro={start:0,running:false,done:false}, INTRO_MS=1800;
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+function drawCover(img,W,H){const ir=img.naturalWidth/img.naturalHeight||1.9,r=W/H;let w,h;if(ir>r){h=H;w=H*ir;}else{w=W;h=W/ir;}ctx.drawImage(img,(W-w)/2,(H-h)/2,w,h);}
+function drawCode(now,take){
+  const {W,H,layers}=code; ctx.clearRect(0,0,W,H); if(!code.ready) return;
+  const frame=layers[Math.floor(now/150)%layers.length];
+  if(!intro.done){
+    const k=intro.running?(now-intro.start)/INTRO_MS:0, y=H*ease(clamp(k));
+    ctx.save(); ctx.beginPath(); ctx.rect(0,0,W,y); ctx.clip(); ctx.drawImage(frame,0,0,W,H); ctx.restore();
+    if(k>0&&y<H){ctx.fillStyle=SIG;ctx.fillRect(0,y-1,W,2);}
+    if(k>=1) intro.done=true;
+  } else ctx.drawImage(frame,0,0,W,H);
+  const radius=lens.r+Math.pow(take,1.5)*Math.hypot(W,H); if(radius<1) return;
+  const cx=lerp(lens.x,W/2,take), cy=lerp(lens.y,H*.46,take);
+  ctx.save(); ctx.beginPath(); ctx.arc(cx,cy,radius,0,TAU); ctx.clip(); ctx.fillStyle=INK; ctx.fillRect(0,0,W,H);
+  if(dash.complete&&dash.naturalWidth) drawCover(dash,W,H); ctx.restore();
+  ctx.strokeStyle=SIG; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(cx,cy,radius,0,TAU); ctx.stroke();
+}
+const par={x:0,y:0};
+scene((dt,now)=>{
+  const {vh}=S, covered=S.sy>vh*1.1; stage.style.visibility=covered?'hidden':''; if(covered) return;
+  const p=clamp(S.sy/(vh*.92)), over=fine&&S.pointer&&S.py<vh-S.y&&intro.done;
+  const baseR=clamp(Math.min(code.W,code.H)*.17,74,190);
+  const tx=over?S.px:code.W*(.5+Math.sin(now*.00034)*.22), ty=over?S.py:code.H*(.36+Math.cos(now*.00047)*.12), tau=over?70:420;
+  if(lens.r<.5&&intro.done){lens.x=tx;lens.y=ty;}
+  lens.x=damp(lens.x,tx,tau,dt); lens.y=damp(lens.y,ty,tau,dt); lens.r=damp(lens.r,intro.done?(over?baseR:baseR*.62):0,260,dt);
+  drawCode(now,p);
+  par.x=damp(par.x,over?S.px/S.vw-.5:0,240,dt); par.y=damp(par.y,over?S.py/vh-.5:0,240,dt);
+  canvas.style.transform=`translate3d(${(-par.x*16).toFixed(2)}px,${(-par.y*10-p*vh*.04).toFixed(2)}px,0) scale(${(1+p*.1).toFixed(4)})`;
+  const split=p*S.vw*.5, drift=par.x*14;
+  nameWords[0].style.transform=`translate3d(${(drift-split).toFixed(2)}px,0,0)`; nameWords[1].style.transform=`translate3d(${(drift+split).toFixed(2)}px,0,0)`;
+  const a=clamp(1-p*2.4); heroUi.style.opacity=a.toFixed(3); heroUi.style.transform=`translate3d(0,${(-p*46).toFixed(2)}px,0)`; heroUi.style.visibility=a<.02?'hidden':'';
+});
+const roleWord=$('#roleWord'), roles=roleWord.dataset.words.split(','); let ri=0;
+const startRoles=()=>setInterval(()=>{if(S.y>S.vh||document.hidden)return;ri=(ri+1)%roles.length;scramble(roleWord,roles[ri]);},2600);
+
+/* ---------- fitas: velocidade e sentido seguem a rolagem ---------- */
+const tapesBox=$('.tapes'), tapes=$$('.tape').map(el=>({el,track:$('.tape-track',el),set:$('.tape-set',el),dir:+el.dataset.dir,x:0,w:1}));
+let tapesTop=0, heading=1;
+onMeasure(()=>{tapesTop=pageTop(tapesBox);tapes.forEach(t=>{while(t.track.children.length>1)t.track.lastElementChild.remove();t.w=t.set.getBoundingClientRect().width||1;const n=Math.ceil(S.vw*1.3/t.w)+1;for(let i=0;i<n;i++)t.track.append(t.set.cloneNode(true));});});
+scene(dt=>{if(S.sy+S.vh<tapesTop-200||S.sy>tapesTop+500)return;if(Math.abs(S.vy)>.4)heading=S.vy>0?1:-1;const sp=.05+Math.min(Math.abs(S.vy),80)*.028;
+  tapes.forEach(t=>{t.x-=t.dir*heading*sp*dt;if(t.x<=-t.w)t.x+=t.w;if(t.x>0)t.x-=t.w;t.track.style.transform=`translate3d(${t.x.toFixed(2)}px,0,0)`;});});
+
+/* ---------- manifesto: as palavras ganham tinta com a rolagem ---------- */
+const ink={top:0,h:0,p:-1};
+onMeasure(()=>{ink.top=pageTop(manifesto);ink.h=manifesto.offsetHeight;});
+scene(()=>{if(S.sy+S.vh<ink.top||S.sy>ink.top+ink.h)return;const p=clamp((S.sy+S.vh*.82-ink.top)/(ink.h+S.vh*.28)),n=p*inkWords.length;if(Math.abs(n-ink.p)<.01)return;ink.p=n;inkWords.forEach((w,i)=>{w.style.opacity=(.13+clamp(n-i)*.87).toFixed(3);});});
+
+/* ---------- parallax ---------- */
+const depths=$$('[data-depth]').map(el=>({el,k:+el.dataset.depth,c:0,h:0}));
+onMeasure(()=>depths.forEach(d=>{const s=d.el.style.transform;d.el.style.transform='';d.h=d.el.offsetHeight;d.c=pageTop(d.el)+d.h/2;d.el.style.transform=s;}));
+scene(()=>depths.forEach(d=>{const off=d.c-(S.sy+S.vh/2);if(Math.abs(off)>S.vh+d.h)return;d.el.style.transform=`translate3d(0,${(off*d.k).toFixed(1)}px,0)`;}));
+
+/* ---------- crachá: pêndulo que reage à rolagem, ao arrasto e ao cursor ---------- */
+const rig=$('#rig'), badge=$('#badge'), sobre=$('#sobre');
+const pend={a:0,v:0,drag:false,sx:0,sa:0,len:600,max:3,top:0,bottom:0,tx:0,ty:0,ttx:0,tty:0};
+onMeasure(()=>{const slot=rig.parentElement,r1=rig.style.transform,r2=slot.style.transform;rig.style.transform='';slot.style.transform='';
+  const st=pageTop(sobre),strap=Math.max(60,pageTop(slot)-st);rig.style.transform=r1;slot.style.transform=r2;rig.style.setProperty('--strap-h',strap+'px');
+  pend.len=strap+badge.offsetHeight*.6;pend.max=Math.atan2(S.vw<700?34:64,pend.len)*180/Math.PI;pend.top=st;pend.bottom=st+sobre.offsetHeight;});
+scene(dt=>{if(S.sy+S.vh<pend.top||S.sy>pend.bottom)return;const f=dt/16.67;
+  if(!pend.drag){pend.v+=(-.0026*pend.a-.016*pend.v+clamp(S.vy,-70,70)*.00011*(pend.max/3))*f;pend.a=clamp(pend.a+pend.v*f,-pend.max*2.4,pend.max*2.4);}
+  rig.style.transform=`rotate(${pend.a.toFixed(3)}deg)`;pend.tx=damp(pend.tx,pend.ttx,140,dt);pend.ty=damp(pend.ty,pend.tty,140,dt);badge.style.transform=`rotateX(${pend.tx.toFixed(2)}deg) rotateY(${pend.ty.toFixed(2)}deg)`;});
+badge.addEventListener('pointerdown',e=>{pend.drag=true;pend.sx=e.clientX;pend.sa=pend.a;pend.v=0;badge.setPointerCapture(e.pointerId);});
+badge.addEventListener('pointermove',e=>{
+  if(e.pointerType==='mouse'){const b=badge.getBoundingClientRect(),nx=clamp((e.clientX-b.left)/b.width),ny=clamp((e.clientY-b.top)/b.height);pend.ttx=(.5-ny)*16;pend.tty=(nx-.5)*16;badge.style.setProperty('--sx',(nx*100).toFixed(1)+'%');badge.style.setProperty('--sy',(ny*100).toFixed(1)+'%');}
+  if(!pend.drag)return;const next=clamp(pend.sa-((e.clientX-pend.sx)/pend.len)*(180/Math.PI),-pend.max*2.4,pend.max*2.4);pend.v=next-pend.a;pend.a=next;});
+const release=()=>{pend.drag=false;};badge.addEventListener('pointerup',release);badge.addEventListener('pointercancel',release);
+badge.addEventListener('pointerleave',()=>{pend.ttx=0;pend.tty=0;});
+
+/* ---------- habilidades no toque: a linha mais perto do centro acende ---------- */
+const rowsEl=$$('.stack-row').map(el=>({el,c:0,on:false})), stackBox={top:0,bottom:0};
+onMeasure(()=>{rowsEl.forEach(r=>{r.c=pageTop(r.el)+r.el.offsetHeight/2;});const l=$('#stackList');stackBox.top=pageTop(l);stackBox.bottom=stackBox.top+l.offsetHeight;});
+if(!fine) scene(()=>{const c=S.y+S.vh/2,inside=c>stackBox.top&&c<stackBox.bottom;rowsEl.forEach(r=>{const on=inside&&Math.abs(r.c-c)<r.el.offsetHeight/2;if(on!==r.on){r.on=on;r.el.classList.toggle('on',on);}});});
+
+/* ---------- galeria horizontal ---------- */
+const RATIO=.8, pinQ=matchMedia('(min-width: 900px) and (min-height: 520px)');
+const gal={el:$('#projetos'),ghost:$('#galleryGhost'),panels:$$('.pj').map(el=>({el,name:el.dataset.name,media:$('.pj-media',el),img:$('.frame-view img',el),info:$('.pj-info',el),title:$('.pj-title',el),left:0,w:0,tick:null})),top:0,range:1,dist:0,pinned:false,active:-1};
+const railNow=$('#railNow'), railName=$('#railName'), railTicks=$('#railTicks');
+const setActive=i=>{if(i===gal.active)return;gal.panels.forEach((p,j)=>p.el.classList.toggle('active',j===i));gal.active=i;if(i<0)return;railNow.textContent=String(i+1).padStart(2,'0');if(railName.textContent!==gal.panels[i].name)scramble(railName,gal.panels[i].name,420);};
+const goTo=i=>{const p=gal.panels[i],k=clamp((p.left+p.w/2-S.vw/2)/gal.dist);scrollTo({top:gal.top+k*gal.range,behavior:'smooth'});};
+gal.panels.forEach((p,i)=>{const t=document.createElement('button');t.type='button';t.className='rail-tick';t.setAttribute('aria-label','Ir para '+p.name);t.addEventListener('click',()=>goTo(i));railTicks.append(t);p.tick=t;});
+onMeasure(()=>{
+  gal.pinned=pinQ.matches; gal.el.classList.toggle('pinned',gal.pinned);
+  if(!gal.pinned){gal.el.style.height='';track.style.transform='';gal.panels.forEach(p=>{p.info.style.transform='';p.title.style.fontStretch='';p.media.style.transform='';p.img.style.removeProperty('--px');});return;}
+  gal.panels.forEach(p=>p.img.style.setProperty('--r',p.img.dataset.ratio));
+  gal.dist=Math.max(1,track.offsetWidth-S.vw); gal.range=gal.dist*RATIO; gal.el.style.height=(gal.range+S.vh)+'px'; gal.top=pageTop(gal.el);
+  gal.panels.forEach(p=>{p.left=p.el.offsetLeft;p.w=p.el.offsetWidth;});
+});
+scene(()=>{
+  if(!gal.pinned)return; if(S.y+S.vh<gal.top-200||S.y>gal.top+gal.range+S.vh+200)return;
+  const x=-clamp((S.sy-gal.top)/gal.range)*gal.dist; track.style.transform=`translate3d(${x.toFixed(2)}px,0,0)`; gal.ghost.style.transform=`translate3d(${(x*.24).toFixed(2)}px,-50%,0)`;
+  const skew=clamp(S.vy*.07,-5,5).toFixed(2); let near=-1,nd=Infinity;
+  gal.panels.forEach((p,i)=>{const c=p.left+p.w/2+x,d=(c-S.vw/2)/S.vw;if(Math.abs(d)<nd){nd=Math.abs(d);near=i;}
+    p.tick.style.setProperty('--fill',clamp((S.vw/2-(p.left+x))/p.w).toFixed(3)); if(Math.abs(d)>1.15)return;
+    const k=clamp(1-Math.abs(d)*1.8); p.img.style.setProperty('--px',(-d*34).toFixed(1)+'px'); p.info.style.transform=`translate3d(${(-d*22).toFixed(1)}px,0,0)`;
+    p.title.style.fontStretch=(62+k*k*12).toFixed(1)+'%'; p.media.style.transform=`skewX(${skew}deg)`;});
+  setActive(nd<.62?near:-1);
+});
+const panelObs=new IntersectionObserver(es=>{if(gal.pinned)return;es.forEach(e=>e.target.classList.toggle('active',e.isIntersecting));},{threshold:.5});
+const seenObs=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.closest('.pj').classList.add('seen');seenObs.unobserve(e.target);}),{threshold:.12});
+gal.panels.forEach(p=>{panelObs.observe(p.el);seenObs.observe(p.media);});
+track.addEventListener('focusin',e=>{if(!gal.pinned)return;const i=gal.panels.findIndex(p=>p.el===e.target.closest('.pj'));if(i>=0)goTo(i);});
+$('#galleryPin').addEventListener('wheel',e=>{if(!gal.pinned||Math.abs(e.deltaX)<=Math.abs(e.deltaY))return;e.preventDefault();scrollBy({top:e.deltaX*RATIO,behavior:'instant'});},{passive:false});
+
+/* ---------- linha do tempo ---------- */
+const timeline=$('#timeline'), tl={top:0,h:1};
+onMeasure(()=>{tl.top=pageTop(timeline);tl.h=timeline.offsetHeight||1;});
+scene(()=>{if(S.sy+S.vh<tl.top||S.sy>tl.top+tl.h)return;timeline.style.setProperty('--fill',clamp((S.sy+S.vh*.62-tl.top)/tl.h).toFixed(4));});
+
+/* ---------- contato: a inundação ---------- */
+const flood=$('#flood'), fOver=$('#floodOver'), fUnder=fOver.cloneNode(true);
+fUnder.removeAttribute('id'); fUnder.classList.replace('flood-over','flood-under'); fUnder.dataset.theme='ink'; fUnder.inert=true; fUnder.setAttribute('aria-hidden','true'); fOver.before(fUnder);
+const fl={top:0,range:1,maxR:1,flipR:1,r:0,active:false};
+onMeasure(()=>{fl.top=pageTop(flood);fl.range=Math.max(1,flood.offsetHeight-S.vh);fl.maxR=Math.hypot(S.vw/2,S.vh/2)*1.02;fl.flipR=Math.hypot(S.vw*.34,S.vh/2-36);fl.active=getComputedStyle($('.flood-sticky')).position==='sticky';});
+scene(()=>{if(!fl.active){fOver.style.clipPath='';fl.r=fl.maxR;return;}if(S.sy+S.vh<fl.top-50||S.sy>fl.top+fl.range+S.vh)return;
+  const p=clamp((S.sy-fl.top+S.vh*.42)/(fl.range*.76+S.vh*.42));fl.r=p<=0?0:Math.max(6,Math.pow(p,1.7)*fl.maxR);fOver.style.clipPath=fl.r>=fl.maxR?'none':`circle(${fl.r.toFixed(1)}px at 50% 50%)`;});
+
+/* ---------- navegação, progresso, voltar ao topo ---------- */
+const nav=$('#nav'), navPct=$('#navPct'), backTop=$('#backTop'), backRing=$('#backRing');
+const zones=$$('main > section, .footer').map(el=>({el,theme:el.dataset.theme,top:0,bottom:0}));
+const navT=$$('.nav-link').map(link=>{const id=link.getAttribute('href').slice(1);return{link,id,el:id==='contato'?flood:document.getElementById(id),top:0};});
+let docMax=1,lastY=S.y,goingUp=false,lastPct=-1,activeId='';
+onMeasure(()=>{zones.forEach(z=>{z.top=pageTop(z.el);z.bottom=z.top+z.el.offsetHeight;});navT.forEach(t=>{if(t.id!=='hero')t.top=pageTop(t.el);});docMax=Math.max(1,root.scrollHeight-S.vh);});
+scene(()=>{
+  const probe=S.y+34, inFlood=probe>=fl.top&&probe<fl.top+flood.offsetHeight; let zone='ink';
+  zones.forEach(z=>{if(probe>=z.top&&probe<z.bottom)zone=z.theme;}); if(inFlood)zone=fl.r>=fl.flipR?'signal':'ink';
+  if(root.dataset.zone!==zone)root.dataset.zone=zone;
+  const bp=S.y+S.vh-50, end=(bp>=fl.top&&bp<fl.top+flood.offsetHeight&&fl.r>=fl.maxR*.9)?'signal':'other'; if(root.dataset.zoneEnd!==end)root.dataset.zoneEnd=end;
+  const d=S.y-lastY; if(S.y<70)nav.classList.remove('hide'); else if(d>2)nav.classList.add('hide'); else if(d<-2)nav.classList.remove('hide');
+  nav.classList.toggle('solid',S.y>=70); if(d>2)goingUp=false; else if(d<-2)goingUp=true; lastY=S.y;
+  const pct=Math.round(clamp(S.y/docMax)*100); if(pct!==lastPct){lastPct=pct;navPct.textContent=String(pct).padStart(2,'0');}
+  const c=S.y+S.vh*.4; let cur='hero'; navT.forEach(({id,top})=>{if(id!=='hero'&&c>=top)cur=id;});
+  if(cur!==activeId){activeId=cur;navT.forEach(({link,id})=>link.classList.toggle('on',id===cur));}
+  const inGal=gal.pinned&&S.y>=gal.top-S.vh*.3&&S.y<=gal.top+gal.range, atEnd=S.y>docMax-S.vh*.4;
+  backTop.classList.toggle('show',S.y>S.vh*1.1&&!inGal&&(goingUp||atEnd)); backRing.style.transform=`rotate(${(S.sy*.12).toFixed(1)}deg)`;
+});
+
+/* ---------- cursor e microinterações ---------- */
+addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;S.px=e.clientX;S.py=e.clientY;S.pointer=true;},{passive:true});
+document.addEventListener('mouseleave',()=>{S.pointer=false;});
+if(fine){
+  root.classList.add('has-cursor');
+  const cursor=$('#cursor'), dot=$('.c-dot',cursor), ring=$('.c-ring',cursor), label=$('.c-label',cursor), trail={x:-100,y:-100};
+  const inspect=t=>{if(!t||!t.closest)return;const l=t.closest('[data-cursor]');cursor.classList.toggle('is-label',!!l);if(l)label.textContent=l.dataset.cursor;
+    cursor.classList.toggle('is-link',!l&&!!t.closest('a,button'));const th=t.closest('[data-theme]');if(th)cursor.dataset.theme=th.dataset.theme;};
+  addEventListener('pointerover',e=>inspect(e.target),{passive:true});
+  let li=0;
+  scene((dt,now)=>{if(!S.pointer){cursor.style.opacity='0';return;}cursor.style.opacity='1';trail.x=damp(trail.x,S.px,90,dt);trail.y=damp(trail.y,S.py,90,dt);
+    dot.style.transform=`translate3d(${S.px}px,${S.py}px,0)`;ring.style.transform=`translate3d(${trail.x.toFixed(1)}px,${trail.y.toFixed(1)}px,0)`;
+    cursor.classList.toggle('in-hero',S.py<S.vh-S.y);if(Math.abs(S.vy)>.5&&now-li>160){li=now;inspect(document.elementFromPoint(S.px,S.py));}});
+  $$('[data-magnetic]').forEach(el=>{
+    el.addEventListener('pointermove',e=>{const b=el.getBoundingClientRect(),dx=e.clientX-(b.left+b.width/2),dy=e.clientY-(b.top+b.height/2);el.style.transition='transform .25s ease-out,color .35s,border-color .35s,background-color .3s';el.style.transform=`translate3d(${(dx*.26).toFixed(1)}px,${(dy*.34).toFixed(1)}px,0)`;});
+    el.addEventListener('pointerleave',()=>{el.style.transition='';el.style.transform='';});});
+}
+$$('.btn').forEach(b=>b.addEventListener('pointerenter',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--x',(e.clientX-r.left)+'px');b.style.setProperty('--y',(e.clientY-r.top)+'px');}));
+
+/* ---------- loop ---------- */
+let last=performance.now();
+const loop=now=>{const dt=Math.min(now-last,50)||16.67;last=now;const prev=S.sy;S.y=scrollY;S.sy=Math.abs(S.y-S.sy)<.05?S.y:damp(S.sy,S.y,85,dt);S.vy=damp(S.vy,(S.sy-prev)/dt*16.67,90,dt);for(let i=0;i<scenes.length;i++)scenes[i](dt,now);requestAnimationFrame(loop);};
+
+let cW=0,cH=0; const rebuild=()=>{if(stage.clientWidth===cW&&stage.clientHeight===cH&&code.ready)return;cW=stage.clientWidth;cH=stage.clientHeight;buildCode();};
+let rt=0,lw=innerWidth,lh=innerHeight;
+addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(!fine&&innerWidth===lw&&Math.abs(innerHeight-lh)<130)return;lw=innerWidth;lh=innerHeight;measure();rebuild();},180);});
+pinQ.addEventListener('change',measure);
+
+/* ---------- entrada ---------- */
+const loader=$('#loader'), lNum=$('#loaderNum'), lBar=$('#loaderBar');
+let returning=false; try{returning=sessionStorage.getItem('jg-visited')==='1';sessionStorage.setItem('jg-visited','1');}catch(e){}
+const fontsReady=document.fonts?Promise.all([document.fonts.load('500 12px "Martian Mono"'),document.fonts.load('900 100px "Archivo"'),document.fonts.load('italic 100px "Instrument Serif"')]).catch(()=>{}):Promise.resolve();
+const cap=new Promise(r=>setTimeout(r,3500));
+let interacted=false; ['wheel','touchstart','keydown','pointerdown'].forEach(t=>addEventListener(t,()=>{interacted=true;},{once:true,passive:true}));
+const applyHash=()=>{if(interacted||!location.hash)return;const t=document.getElementById(location.hash.slice(1));if(t)t.scrollIntoView({behavior:'instant'});};
+addEventListener('load',()=>{measure();applyHash();requestAnimationFrame(()=>root.classList.add('smooth'));});
+measure(); requestAnimationFrame(loop);
+const finish=()=>{loader.classList.add('done');setTimeout(()=>loader.remove(),1100);
+  const start=()=>{intro.start=performance.now();intro.running=true;setTimeout(()=>root.classList.add('hero-in'),INTRO_MS*.62);setTimeout(startRoles,INTRO_MS);};
+  if(scrollY>S.vh){intro.done=true;root.classList.add('hero-in');startRoles();}else setTimeout(start,260);};
+let ready=false;
+Promise.race([fontsReady,cap]).then(()=>{measure();rebuild();applyHash();ready=true;});
+const minT=returning?300:1500, t0=performance.now();
+const count=now=>{const k=clamp((now-t0)/minT),v=ready?k:Math.min(k,.88),e=1-Math.pow(1-v,2.4);lNum.textContent=String(Math.round(e*100)).padStart(3,'0');lBar.style.transform=`scaleX(${e.toFixed(3)})`;if(ready&&k>=1)finish();else requestAnimationFrame(count);};
+requestAnimationFrame(count);
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ==========================================================================
+   Na prática: roteirizador com 2 caminhões e o estoque 3D do Moranguinho.
+   Script separado do resto: funciona mesmo com "reduzir movimento" ligado.
+   ========================================================================== */
+(()=>{'use strict';
+const $=s=>document.querySelector(s);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esc=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const PAL={'--ink':'#f4f2ec','--panel':'#121212','--line':'rgba(255,255,255,.14)','--muted':'#a3a098',
+  '--acc-fill':'#FFC400','--blue':'#7FA8FF','--on-acc':'#0a0a0a'};
+const css=n=>PAL[n]||n;
+const setCursor=(el,t)=>{el.dataset.cursor=t;const c=$('#cursor');if(c&&c.classList.contains('is-label'))c.querySelector('.c-label').textContent=t;};
+
+/* ---------- armazém 3D (Three.js): o estoque do Moranguinho ---------- */
+(function(){
+  const cv=$('#whCanvas'); if(!cv) return;
+  if(!window.THREE){$('#wh').classList.add('nogl');return;}
+  let rd; try{rd=new THREE.WebGLRenderer({canvas:cv,antialias:true});}catch(e){$('#wh').classList.add('nogl');return;}
+  rd.setPixelRatio(Math.min(devicePixelRatio||1,1.75));
+  const sc=new THREE.Scene(), cam=new THREE.PerspectiveCamera(40,1,.1,200);
+  const M=(c,o={})=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.85,metalness:.05},o));
+  const BOX=new THREE.BoxGeometry(1,1,1), rnd=(a,b)=>a+Math.random()*(b-a), pick=a=>a[Math.floor(Math.random()*a.length)];
+  const mat={floor:M('#1b1e25'),line:M('#F5B300',{roughness:.6}),up:M('#2f5fb3',{metalness:.35,roughness:.45}),beam:M('#e8862a',{metalness:.3,roughness:.45}),
+    wood:M('#a77b4f'),box:M('#ffffff',{roughness:.7}),body:M('#F5B300',{metalness:.2,roughness:.45}),dark:M('#23262d',{roughness:.6}),
+    truck:M('#dfe3ea',{roughness:.5}),cab:M('#2f5fb3',{metalness:.3,roughness:.4}),glass:M('#9CC3FF',{roughness:.15,metalness:.5}),shadow:M('#000000',{transparent:true,opacity:.28})};
+  const add=(m,sz,ps,parent=sc)=>{const o=new THREE.Mesh(BOX,m);o.scale.set(...sz);o.position.set(...ps);parent.add(o);return o;};
+
+  sc.add(new THREE.HemisphereLight(0xffffff,0x334455,.75));
+  const sun=new THREE.DirectionalLight(0xffffff,.85); sun.position.set(8,16,10); sc.add(sun);
+  const fill=new THREE.DirectionalLight(0x9cc3ff,.35); fill.position.set(-10,8,-12); sc.add(fill);
+
+  add(mat.floor,[34,.1,24],[0,-.05,0]);
+  const grid=new THREE.GridHelper(34,34,0x3a3e4a,0x2a2e38); grid.material.transparent=true; grid.material.opacity=.45; grid.position.y=.002; sc.add(grid);
+  [-4.25,-.95,.95,4.25].forEach(z=>add(mat.line,[15,.012,.1],[0,.008,z]));
+  [-7.5,7.5].forEach(x=>add(mat.line,[.1,.012,8.5],[x,.008,0]));
+  for(let i=0;i<7;i++) add(mat.line,[.12,.012,1.6],[-12.6+i*.5,.008,0]).rotation.y=.6;
+
+  const SEC=[
+    {id:'A',nome:'Mercearia',cores:['#c9a273','#b8915f','#d6b48a','#a8865c'],
+     itens:['Arroz 5 kg','Feijão carioca 1 kg','Açúcar cristal 1 kg','Café 500 g','Macarrão espaguete 500 g','Óleo de soja 900 ml','Farinha de trigo 1 kg','Leite em pó 400 g']},
+    {id:'B',nome:'Bebidas',cores:['#5b8dd9','#9ec5e8','#c94b4b','#4f9e7a'],
+     itens:['Refrigerante 2 L','Água mineral 500 ml','Suco de caixinha 1 L','Água de coco 1 L','Refrigerante lata 350 ml','Energético 473 ml']},
+    {id:'C',nome:'Limpeza e higiene',cores:['#7cc69a','#e9e9e9','#6fb3d1','#f2c14e'],
+     itens:['Sabão em pó 1 kg','Detergente 500 ml','Água sanitária 2 L','Papel higiênico 12 rolos','Amaciante 2 L','Creme dental 90 g']}
+  ];
+  const ROWS=[-5.2,0,5.2], LV=[0,1.51,3.01], BAYS=4, code=(ri,b,l)=>`${SEC[ri].id}-${String(b+1).padStart(2,'0')}-${l}`;
+  const ups=[],beams=[];
+  ROWS.forEach(z=>{
+    add(mat.shadow,[12.4,.01,1.6],[0,.01,z]);
+    for(let b=0;b<=BAYS;b++)[-.6,.6].forEach(dz=>ups.push([-6+b*3,2.2,z+dz]));
+    for(let b=0;b<BAYS;b++)[1.45,2.95,4.35].forEach(y=>[-.6,.6].forEach(dz=>beams.push([-4.5+b*3,y,z+dz])));
+  });
+  const inst=(m,list,sz)=>{const im=new THREE.InstancedMesh(BOX,m,list.length),d=new THREE.Object3D();
+    list.forEach((p,i)=>{d.position.set(...p);d.scale.set(...sz);d.updateMatrix();im.setMatrixAt(i,d.matrix);});sc.add(im);return im;};
+  inst(mat.up,ups,[.1,4.4,.1]); inst(mat.beam,beams,[3,.12,.08]);
+
+  const bases=[],slots=[];
+  ROWS.forEach((z,ri)=>{for(let b=0;b<BAYS;b++)LV.forEach((y,l)=>[-.72,.72].forEach(dx=>{
+    if(Math.random()<.12) return;
+    const x=-4.5+b*3+dx, h=rnd(.55,1.15);
+    bases.push([x,y+.07,z]);
+    slots.push({x,y:y+.14+h/2,z,h,ri,b,l,code:code(ri,b,l),item:pick(SEC[ri].itens),cor:new THREE.Color(pick(SEC[ri].cores))});
+  }));});
+  inst(mat.wood,bases,[1.2,.14,1]);
+  const bx=new THREE.InstancedMesh(BOX,mat.box,slots.length),d0=new THREE.Object3D();
+  slots.forEach((q,i)=>{d0.position.set(q.x,q.y,q.z);d0.scale.set(1.1,q.h,.95);d0.updateMatrix();bx.setMatrixAt(i,d0.matrix);bx.setColorAt(i,q.cor);});
+  bx.instanceColor.needsUpdate=true; sc.add(bx);
+  const HI=new THREE.Color('#ffe08a'), SEL=new THREE.Color('#F5B300');
+
+  function label(t,w=2.6){
+    const c=document.createElement('canvas');c.width=512;c.height=112;const g=c.getContext('2d');
+    g.fillStyle='#F5B300';g.fillRect(0,0,512,112);g.fillStyle='#0C0D11';let fs=50;
+    do{g.font=`700 ${fs}px "Martian Mono", monospace`;fs-=2;}while(g.measureText(t).width>470&&fs>20);
+    g.textAlign='center';g.textBaseline='middle';g.fillText(t,256,60);
+    const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthTest:false,transparent:true}));
+    sp.scale.set(w,w*.22,1);sp.renderOrder=10;return sp;
+  }
+  ROWS.forEach((z,ri)=>{const lb=label(`${SEC[ri].id} · ${SEC[ri].nome.toUpperCase()}`,3.2);lb.position.set(-7.6,5,z);sc.add(lb);});
+
+  const tags=[], tagGeo=new THREE.PlaneGeometry(.66,.22);
+  function tagTex(t){
+    const c=document.createElement('canvas');c.width=256;c.height=86;const g=c.getContext('2d');
+    g.fillStyle='#ffffff';g.fillRect(0,0,256,86);g.fillStyle='#111111';
+    let sd=[...t].reduce((a,ch)=>(a*31+ch.charCodeAt(0))%9973,7),x=12;
+    while(x<244){sd=(sd*9301+49297)%233280;const w=1+sd%4;if(sd%3)g.fillRect(x,6,w,50);x+=w+1+sd%2;}
+    g.font='700 22px "Martian Mono", monospace';g.textAlign='center';g.fillText(t,128,79);
+    return new THREE.CanvasTexture(c);
+  }
+  [[0,1],[1,1],[1,-1],[2,-1]].forEach(([ri,side])=>{for(let b=0;b<BAYS;b++)[1.45,2.95,4.35].forEach((y,l)=>{
+    const m=new THREE.Mesh(tagGeo,new THREE.MeshBasicMaterial({map:tagTex(code(ri,b,l))}));
+    m.position.set(-4.5+b*3,y,ROWS[ri]+side*.65); m.rotation.y=side>0?0:Math.PI; m.userData={ri,b,l}; sc.add(m); tags.push(m);
+  });});
+  const laser=new THREE.Mesh(new THREE.PlaneGeometry(.8,.025),new THREE.MeshBasicMaterial({color:0xff2a2a,transparent:true,opacity:.95}));
+  laser.visible=false; sc.add(laser);
+  let scanTag=null, scanStart=-9, nextScan=1.5;
+
+  const fk=new THREE.Group(); sc.add(fk);
+  add(mat.body,[1.6,.8,1.1],[0,.7,0],fk); add(mat.dark,[.6,.55,1.05],[-.6,1.35,0],fk);
+  [[.35,.45],[.35,-.45],[-.45,.45],[-.45,-.45]].forEach(([x,z])=>add(mat.dark,[.06,1.2,.06],[x,1.7,z],fk));
+  add(mat.dark,[.95,.06,1.0],[-.05,2.3,0],fk); add(mat.dark,[.35,.35,.4],[-.1,1.3,0],fk);
+  const wg=new THREE.CylinderGeometry(.27,.27,.22,18);
+  [[.5,.55],[.5,-.55],[-.55,.55],[-.55,-.55]].forEach(([x,z])=>{const w=new THREE.Mesh(wg,mat.dark);w.rotation.x=Math.PI/2;w.position.set(x,.27,z);fk.add(w);});
+  [.42,-.42].forEach(z=>add(mat.dark,[.1,2.7,.1],[.88,1.35,z],fk));
+  const lift=new THREE.Group(); lift.position.set(.95,0,0); fk.add(lift);
+  [.3,-.3].forEach(z=>add(mat.dark,[1.15,.05,.12],[.6,.1,z],lift)); add(mat.dark,[.06,.9,.95],[.03,.5,0],lift);
+  add(mat.wood,[1.2,.14,1],[.65,.2,0],lift); add(M('#c9a273'),[1.1,.8,.95],[.65,.67,0],lift);
+
+  const tr=new THREE.Group(); tr.position.set(-18.6,0,0); sc.add(tr);
+  add(mat.truck,[6.4,2.7,2.5],[0,1.85,0],tr); add(mat.cab,[1.9,2.3,2.4],[-4.3,1.45,0],tr);
+  add(mat.glass,[.05,.9,2.1],[-5.26,1.9,0],tr); add(mat.dark,[8.4,.25,2.2],[-1,.45,0],tr);
+  const tw=new THREE.CylinderGeometry(.48,.48,.3,20);
+  [[2.2,1.1],[2.2,-1.1],[1.1,1.1],[1.1,-1.1],[-4.3,1.1],[-4.3,-1.1]].forEach(([x,z])=>{const w=new THREE.Mesh(tw,mat.dark);w.rotation.x=Math.PI/2;w.position.set(x,.48,z);tr.add(w);});
+  const dock=label('DOCA · RECEBIMENTO',3); dock.position.set(-15.2,3.6,0); sc.add(dock);
+
+  let th=.8,ph=1.0,rad=24,tth=th,tph=ph,trad=rad,drag=null,lastUse=0,hover=-1,sel=-1,visible=false;
+  const ndc=new THREE.Vector2(9,9), ray=new THREE.Raycaster(), target=new THREE.Vector3(-1,1.2,0);
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  function setNdc(e){const r=cv.getBoundingClientRect();ndc.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);}
+  function hit(){ray.setFromCamera(ndc,cam);const h=ray.intersectObject(bx)[0];return h?h.instanceId:-1;}
+  function paint(i){if(i<0)return;bx.setColorAt(i,i===sel?SEL:i===hover?HI:slots[i].cor);bx.instanceColor.needsUpdate=true;}
+  cv.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,m:0};lastUse=performance.now();});
+  cv.addEventListener('pointermove',e=>{
+    setNdc(e);
+    if(drag&&e.buttons){const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.m+=Math.abs(dx)+Math.abs(dy);
+      tth+=dx*.006; if(e.pointerType==='mouse') tph=clamp(tph-dy*.004,.42,1.36); drag.x=e.clientX;drag.y=e.clientY;lastUse=performance.now();}
+    const h=hit(); if(h!==hover){const old=hover;hover=h;paint(old);paint(h);setCursor(cv,h>=0?'Ler etiqueta':'Girar');}
+  });
+  cv.addEventListener('pointerup',e=>{if(drag&&drag.m<8){setNdc(e);const h=hit();if(h>=0){const old=sel;sel=h;paint(old);paint(h);showCard(h);}}drag=null;});
+  cv.addEventListener('pointerleave',()=>{const old=hover;hover=-1;paint(old);ndc.set(9,9);});
+  cv.addEventListener('pointercancel',()=>{drag=null;});
+  $('#whIn').onclick=()=>{trad=clamp(trad-4,11,34);lastUse=performance.now();};
+  $('#whOut').onclick=()=>{trad=clamp(trad+4,11,34);lastUse=performance.now();};
+
+  const hora=()=>new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  function showCard(i){
+    const c=$('#whCard');
+    if(i<0){c.innerHTML='<span class="k">[ estoque · Moranguinho ]</span><h3>Clique numa caixa</h3><p>Cada seção tem sua etiqueta com código de barras. Clique numa caixa para fazer a leitura, como era feito na saída de cada produto.</p>';return;}
+    const q=slots[i], sec=SEC[q.ri];
+    c.innerHTML=`<span class="k">[ etiqueta ${q.code} ]</span><h3>${esc(q.item)}</h3><p>Seção ${sec.id} · ${esc(sec.nome)} · vão ${q.b+1} · nível ${q.l}<br>Leitura registrada: saída às ${hora()} ✓ <small>(simulação)</small></p>`;
+  }
+  showCard(-1);
+  const feed=$('#whFeed');
+  function logScan(tag){
+    const {ri,b,l}=tag.userData, q=slots.filter(x=>x.ri===ri&&x.b===b&&x.l===l), item=q.length?pick(q).item:pick(SEC[ri].itens);
+    const li=document.createElement('li'); li.innerHTML=`[bip] <b>${code(ri,b,l)}</b> · ${esc(item)} · <i>saída ✓</i>`;
+    feed.prepend(li); while(feed.children.length>4) feed.lastChild.remove();
+  }
+
+  function size(){const w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;rd.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
+  new ResizeObserver(size).observe(cv); size();
+  new IntersectionObserver(es=>{visible=es[0].isIntersecting;},{rootMargin:'100px'}).observe(cv);
+
+  const bg=new THREE.Color(css('--panel'));
+  rd.setClearColor(bg); sc.fog=new THREE.Fog(bg,30,62);
+
+  const clock=new THREE.Clock();
+  (function tick(){
+    requestAnimationFrame(tick);
+    const dt=Math.min(clock.getDelta(),.05), t=clock.elapsedTime;
+    if(!visible||document.hidden) return;
+    if(!reduce&&!drag&&performance.now()-lastUse>4000) tth+=dt*.08;
+    th+=(tth-th)*.08; ph+=(tph-ph)*.08; rad+=(trad-rad)*.08;
+    cam.position.set(target.x+rad*Math.sin(ph)*Math.cos(th),target.y+rad*Math.cos(ph),target.z+rad*Math.sin(ph)*Math.sin(th)); cam.lookAt(target);
+    const c=reduce?0:(t%18), z=2.6; let x,rot=0,lh=.05;
+    if(c<6){x=-9+16*(c/6);} else if(c<8){x=7;lh=.05+1.5*Math.sin((c-6)/2*Math.PI);} else if(c<9){x=7;rot=Math.PI*(c-8);}
+    else if(c<15){x=7-16*((c-9)/6);rot=Math.PI;} else if(c<17){x=-9;rot=Math.PI;lh=.05+1.5*Math.sin((c-15)/2*Math.PI);} else {x=-9;rot=Math.PI*(1-(c-17));}
+    fk.position.set(x,0,z); fk.rotation.y=-rot; lift.position.y=lh;
+    if(!reduce){
+      if(t>nextScan){scanTag=pick(tags);scanStart=t;nextScan=t+2.6;logScan(scanTag);}
+      const k=t-scanStart;
+      if(scanTag&&k<.7){laser.visible=true;laser.position.copy(scanTag.position);laser.rotation.y=scanTag.rotation.y;
+        laser.translateZ(.012);laser.position.y=scanTag.position.y+.09*Math.sin(k/.7*Math.PI*2);scanTag.material.color.set('#fff2b3');}
+      else if(scanTag){laser.visible=false;scanTag.material.color.set('#ffffff');scanTag=null;}
+    }
+    rd.render(sc,cam);
+  })();
+})();
+
+/* ---------- roteirizador: 2 caminhões, capacidade e prazos ---------- */
+const cv=$('#map'), ctx=cv.getContext('2d');
+const NC=10, KM=60, VEL=40, SERV=15, START=7*60, RKM=3.2, MULTA=80;
+const TRUCKS=[{nome:'VUC',cap:14,cor:'--acc-fill'},{nome:'Toco',cap:18,cor:'--blue'}];
+let pts=[], routes=[[],[]], hist=[], active=0, best=null, bestCost=0, showAlgo=false, gs=Date.now()%100000;
+const gr=()=>{gs=(gs*9301+49297)%233280;return gs/233280;};
+const dkm=(a,b)=>Math.hypot(pts[a].x-pts[b].x,(pts[a].y-pts[b].y)*.62)*KM;
+const hhmm=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(Math.round(m%60)).padStart(2,'0');
+const brl=v=>'R$ '+Math.round(v).toLocaleString('pt-BR');
+const fkm=v=>v.toFixed(1).replace('.',',')+' km';
+const loadOf=r=>r.reduce((s,c)=>s+pts[c].q,0);
+
+function evalRoute(r){
+  let km=0,t=START,late=0,prev=0; const arr={};
+  for(const c of r){const d=dkm(prev,c);km+=d;t+=d*60/VEL;arr[c]=t;if(pts[c].tw&&t>pts[c].tw)late++;t+=SERV;prev=c;}
+  if(r.length){const d=dkm(prev,0);km+=d;t+=d*60/VEL;}
+  return {km,late,arr,back:t,load:loadOf(r)};
+}
+const cost=e=>e.km*RKM+e.late*MULTA;
+const planCost=rs=>rs.reduce((s,r)=>s+cost(evalRoute(r)),0);
+const fits=rs=>rs.every((r,i)=>loadOf(r)<=TRUCKS[i].cap);
+
+function twoOpt(r){
+  let b=r.slice(),bc=cost(evalRoute(b)),imp=true;
+  while(imp){imp=false;
+    for(let i=0;i<b.length-1;i++)for(let k=i+1;k<b.length;k++){
+      const n=b.slice(0,i).concat(b.slice(i,k+1).reverse(),b.slice(k+1)),c=cost(evalRoute(n));
+      if(c+1e-9<bc){b=n;bc=c;imp=true;}}}
+  return b;
+}
+function solve(){
+  const cs=[...Array(NC).keys()].map(i=>i+1), cx=pts[0].x, cy=pts[0].y;
+  cs.sort((a,b)=>Math.atan2(pts[a].y-cy,pts[a].x-cx)-Math.atan2(pts[b].y-cy,pts[b].x-cx));
+  let bp=null,bc=Infinity;
+  for(let st=0;st<NC;st++)for(const dir of [1,-1]){
+    const ord=[];for(let k=0;k<NC;k++)ord.push(cs[((st+dir*k)%NC+NC)%NC]);
+    for(let j=0;j<=NC;j++)for(const f of [0,1]){
+      const rs=[[],[]]; rs[f]=ord.slice(0,j); rs[1-f]=ord.slice(j);
+      if(!fits(rs)) continue;
+      const o=[twoOpt(rs[0]),twoOpt(rs[1])], c=planCost(o);
+      if(c<bc){bc=c;bp=o;}
+    }
+  }
+  if(!bp) return null;
+  let imp=true;
+  while(imp){imp=false;
+    outer: for(let a=0;a<2;a++)for(const c of bp[a])for(let pos=0;pos<=bp[1-a].length;pos++){
+      const na=bp[a].filter(x=>x!==c), nb=bp[1-a].slice(); nb.splice(pos,0,c);
+      const rs=a?[nb,na]:[na,nb]; if(!fits(rs)) continue;
+      const o=[twoOpt(rs[0]),twoOpt(rs[1])], cc=planCost(o);
+      if(cc+1e-9<bc){bc=cc;bp=o;imp=true;break outer;}
+    }
+  }
+  return bp;
+}
+
+function newLoad(){
+  for(let tries=0;tries<60;tries++){
+    pts=[{x:.5,y:.5,q:0,d:1}];
+    while(pts.length<=NC){const p={x:.07+gr()*.86,y:.1+gr()*.8};
+      if(Math.hypot(p.x-.5,p.y-.5)>.13&&pts.every(q=>Math.hypot(q.x-p.x,q.y-p.y)>.11)){p.q=1+Math.floor(gr()*4);pts.push(p);}}
+    if(loadOf(pts.map((_,i)=>i).slice(1))>TRUCKS[0].cap+TRUCKS[1].cap-2) continue;
+    [...Array(NC).keys()].map(i=>i+1).sort(()=>gr()-.5).slice(0,3)
+      .forEach(i=>{pts[i].tw=Math.ceil((START+dkm(0,i)*60/VEL+35+gr()*75)/10)*10;});
+    best=solve(); if(best) break;
+  }
+  bestCost=planCost(best); routes=[[],[]]; hist=[]; active=0; showAlgo=false;
+  $('#gShow').textContent='Ver algoritmo'; upd(); drawMap();
+}
+
+function upd(){
+  const ev=routes.map(evalRoute), done=routes[0].length+routes[1].length;
+  const you=ev.reduce((s,e)=>s+cost(e),0), km=ev.reduce((s,e)=>s+e.km,0), late=ev.reduce((s,e)=>s+e.late,0);
+  $('#trucks').innerHTML=TRUCKS.map((t,i)=>{const e=ev[i],pct=Math.min(100,e.load/t.cap*100);
+    return `<button type="button" class="truck${i===active?' on':''}${e.load>=t.cap?' full':''}" data-t="${i}" style="--c:var(${t.cor})" aria-pressed="${i===active}">
+      <b>Caminhão ${i+1} · ${t.nome}</b>
+      <span>${e.load}/${t.cap} caixas · ${fkm(e.km)}${routes[i].length?' · volta '+hhmm(e.back):''}</span>
+      <span class="cap"><i style="width:${pct}%"></i></span></button>`;}).join('');
+  $('#gStops').textContent=done+' / '+NC; $('#gKm').textContent=fkm(km);
+  $('#gLate').textContent=late; $('#gYou').textContent=brl(you); $('#gAlgo').textContent=brl(bestCost);
+  const mx=Math.max(you,bestCost)||1;
+  $('#gBarYou').style.width=(you/mx*100)+'%'; $('#gBarAlgo').style.width=(bestCost/mx*100)+'%';
+  const v=$('#gVerdict');
+  if(done<NC){
+    v.textContent=done===0?`Comece pelo Caminhão 1 (${TRUCKS[0].nome}). Os pontos com ⏱ têm prazo.`
+      :`Faltam ${NC-done} entregas. ${late?late+' atraso(s) até agora. ':''}Custo parcial: ${brl(you)}.`;
+    return;
+  }
+  const diff=(you/bestCost-1)*100;
+  v.textContent=diff<.5?`Empatou ou venceu o algoritmo (${brl(you)}). Roteirizador humano aprovado.`
+    :`Sua operação custou ${diff.toFixed(0)}% a mais que a do algoritmo (${brl(you-bestCost)} de diferença)${late?', com '+late+' atraso(s)':''}. Toque em “ver algoritmo” para comparar.`;
+}
+
+function drawMap(){
+  const w=cv.parentElement.clientWidth, h=Math.max(380,Math.min(560,w*.62)), d=Math.min(devicePixelRatio||1,2);
+  cv.width=w*d;cv.height=h*d;cv.style.height=h+'px';ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,w,h);
+  const line=css('--line'),ink=css('--ink'),panel=css('--panel'),muted=css('--muted'),cols=TRUCKS.map(t=>css(t.cor));
+  ctx.strokeStyle=line;ctx.lineWidth=1;
+  for(let x=0;x<w;x+=30){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
+  for(let y=0;y<h;y+=30){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+  const P=i=>[pts[i].x*w,pts[i].y*h];
+  const seg=(a,b,c,dash,lw)=>{ctx.setLineDash(dash);ctx.strokeStyle=c;ctx.lineWidth=lw;ctx.beginPath();ctx.moveTo(...P(a));ctx.lineTo(...P(b));ctx.stroke();ctx.setLineDash([]);};
+  if(showAlgo) best.forEach(r=>{if(!r.length)return;const f=[0,...r,0];for(let i=1;i<f.length;i++)seg(f[i-1],f[i],ink,[3,5],1.5);});
+  routes.forEach((r,ti)=>{if(!r.length)return;const f=[0,...r];
+    for(let i=1;i<f.length;i++)seg(f[i-1],f[i],cols[ti],[],3);
+    seg(r[r.length-1],0,cols[ti],[7,6],2);});
+  const ev=routes.map(evalRoute), owner={}; routes.forEach((r,ti)=>r.forEach((c,k)=>owner[c]=[ti,k+1]));
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  pts.forEach((p,i)=>{const[x,y]=P(i);
+    if(p.d){ctx.fillStyle=ink;ctx.fillRect(x-15,y-15,30,30);ctx.fillStyle=panel;ctx.font='700 11px "Martian Mono",monospace';ctx.fillText('CD',x,y+1);return;}
+    const o=owner[i], arr=o?ev[o[0]].arr[i]:null, late=p.tw&&arr&&arr>p.tw;
+    ctx.beginPath();ctx.arc(x,y,15,0,6.283);ctx.fillStyle=panel;ctx.fill();
+    ctx.lineWidth=o?4:2;ctx.strokeStyle=late?'#E5484D':o?cols[o[0]]:ink;ctx.stroke();
+    ctx.fillStyle=ink;ctx.font='700 13px "Martian Mono",monospace';ctx.fillText(p.q,x,y+1);
+    if(o){ctx.fillStyle=cols[o[0]];ctx.beginPath();ctx.arc(x+13,y-13,8,0,6.283);ctx.fill();
+      ctx.fillStyle=css('--on-acc');ctx.font='700 9px "Martian Mono",monospace';ctx.fillText(o[1],x+13,y-12);}
+    if(p.tw){ctx.font='600 10px "Martian Mono",monospace';ctx.fillStyle=late?'#E5484D':muted;
+      ctx.fillText('⏱ até '+hhmm(p.tw)+(arr?(late?' · chegou '+hhmm(arr):' ✓'):''),x,y+27);}
+  });
+}
+
+function shake(msg){const v=$('#gVerdict');v.textContent=msg;const g=cv.closest('.game');g.classList.remove('shake');void g.offsetWidth;g.classList.add('shake');}
+cv.addEventListener('click',ev=>{
+  const r=cv.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width,y=(ev.clientY-r.top)/r.height;
+  let b=-1,bd=1e9; pts.forEach((p,i)=>{if(!i)return;const d=Math.hypot((p.x-x)*r.width,(p.y-y)*r.height);if(d<bd){bd=d;b=i;}});
+  if(b<0||bd>32) return;
+  const rt=routes[active], other=routes[1-active];
+  if(rt[rt.length-1]===b){rt.pop();hist.pop();upd();drawMap();return;}
+  if(rt.includes(b)) return shake('Essa entrega já está nessa rota. Para tirar, clique na última parada.');
+  if(other.includes(b)) return shake(`Essa entrega já está no Caminhão ${2-active}.`);
+  if(loadOf(rt)+pts[b].q>TRUCKS[active].cap) return shake(`Não cabe: o ${TRUCKS[active].nome} leva ${TRUCKS[active].cap} caixas e já tem ${loadOf(rt)}. Use o outro caminhão.`);
+  rt.push(b); hist.push(active); upd(); drawMap();
+});
+$('#trucks').addEventListener('click',e=>{const b=e.target.closest('.truck');if(!b)return;active=+b.dataset.t;upd();});
+$('#gUndo').onclick=()=>{if(!hist.length)return;routes[hist.pop()].pop();upd();drawMap();};
+$('#gShow').onclick=()=>{showAlgo=!showAlgo;$('#gShow').textContent=showAlgo?'Esconder':'Ver algoritmo';drawMap();};
+$('#gNew').onclick=newLoad;
+addEventListener('resize',drawMap); newLoad();
+
+})();
+</script>
+
+</body>
 </html>
